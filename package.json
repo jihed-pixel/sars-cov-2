@@ -83,9 +83,7 @@
     "styled-components": "^5.2.1",
     "tailwind": "^4.0.0",
     "tailwind-rn": "^2.0.1",
-    "web-vitals": "^0.2.4",
-    "webpack": "^4.44.2",
-    "webpack-dev-server": "^3.11.0"
+    "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
