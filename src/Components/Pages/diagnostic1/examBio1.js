@@ -162,7 +162,10 @@ const ExamBio = (props) => {
           <FormInput placeholder="Hb" onChangeText={setHb} type="decimal-pad" />
           <FormInput placeholder="Ht" onChangeText={setHt} type="decimal-pad" />
           <FormButton title="Enregitrer" onPress={handleSubmit} type="decimal-pad" />
-
+          <View style={tailwind("items-center py-5")}>
+        <FormButton title="Retour" onPress={() => props.navigation.navigate("ExamenRadioParaCli1")} />
+        <FormButton title="Pass" onPress={() => props.navigation.navigate("Traitement1")} />
+      </View>
         </View>
       }
       {
@@ -308,8 +311,6 @@ const ExamBio = (props) => {
         <View style={tailwind("items-center py-5")}>
         <FormButton title="Retour" onPress={() => props.navigation.navigate("ExamenRadioParaCli1")} />
         <FormButton title="Pass" onPress={() => props.navigation.navigate("Traitement1")} />
-
-
       </View>
         </View>
       }

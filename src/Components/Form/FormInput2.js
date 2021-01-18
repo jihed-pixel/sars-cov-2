@@ -7,8 +7,9 @@ const FormInput = (props) => {
   return (
 
 
-    <div style={tailwind("items-center")}>
+    <View style={tailwind("items-center")}>
     <View style={styles.row}>
+    <Text style={tailwind("py-6 mx-2 ")}>          </Text>
       <TextInput style={tailwind('border  border-gray-900 my-3  rounded-md w-1/3 h-10')}
         selectTextOnFocus
         placeholder={props.placeholder1}
@@ -19,7 +20,7 @@ const FormInput = (props) => {
         placeholder={props.placeholder2}
         onChangeText={(text) => props.onChangeText2(text)} />
     </View>
-</div>
+</View>
 
   );
 };

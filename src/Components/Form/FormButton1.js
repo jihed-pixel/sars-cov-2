@@ -17,7 +17,7 @@ const FormButton = (prpos) => {
   return (
 
     < >
-      <TouchableOpacity style={tailwind('bg-gray-900 px-3 py-3 mx-3 my-3  w-32 rounded-md')} onPress={prpos.onPress}>
+      <TouchableOpacity style={tailwind('bg-gray-600 px-3 py-3 mx-3 my-3  w-32 rounded-md')} onPress={prpos.onPress}>
         <Text style={tailwind('text-white font-bold text-center')}>
           {prpos.title}
         </Text>

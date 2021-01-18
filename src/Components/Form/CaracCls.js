@@ -3,10 +3,10 @@ import React from 'react';
 
 import tailwind from 'tailwind-rn';
 import { } from 'react-native';
-import FormButton from "./FormButton";
+import FormButton from "./FormButton1";
 import { DatePicker } from '@assenti/rui-components';
 import '@assenti/rui-components/css/index.css';
-import { View } from 'react-native';
+import { Text,View, StyleSheet } from 'react-native';
 
 
 const CaracCls = (props) => {
@@ -41,13 +41,20 @@ const CaracCls = (props) => {
         width={250}
         onChange={(value) => props.setDateF(value)}/>
         </div>
-       <div style={tailwind("items-center")}> 
+        <View style={styles.row}>
+    <Text style={tailwind("py-6 mx-2 ")}>      </Text>
       <FormButton title="Enregistrer" onPress={props.onSubmit} />
-      </div>
+      </View>
       </div>
   );
 };
-
+const styles = StyleSheet.create({
+  row: {
+    flex: 1,
+    flexDirection: "row",
+    padding: 10
+  },
+});
 
 
 

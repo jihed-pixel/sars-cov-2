@@ -11,6 +11,7 @@ import Container from '@material-ui/core/Container';
 import ParticlesBg from "particles-bg";
 import './home.css';
 import SideNav from '../Form/SideNav'
+import MaskedInput from "react-text-mask";
 const Login = (props) => {
   let config = {
       num: [4, 7],
@@ -67,7 +68,7 @@ const Login = (props) => {
 
       <View style={tailwind(' items-center ')} >
         <Image source={{ uri: 'https://images.unsplash.com/photo-1584467735867-4297ae2ebcee?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=649&q=80' }}
-          style={tailwind('flex justify-center rounded-full w-64 h-64 m-12')} />
+          style={tailwind('flex justify-center rounded-lg w-64 h-64 m-2')} />
         <Text style={tailwind('text-red-500')}>
           {typeof (props.loggedUser) === 'string' && props.loggedUser}
         </Text>
