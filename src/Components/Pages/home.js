@@ -36,6 +36,7 @@ const Home = (props) => {
       color: [ "#ff0000"],
       cross: "dead",
       random: 10
+      
     };
 
 
