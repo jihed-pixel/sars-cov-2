@@ -45,7 +45,11 @@ const Home = (props) => {
     <Container style={{backgroundColor:"rgba(200,200,200,0.75)",backgroundsize: "cover"}} component="main" maxWidth="xs" >
       <div class="big">
       <View style={tailwind(' items-center mt-10')} >
-        <Text style={tailwind('text-gray-700 font-bold py-2 text-9xl')}>Bienvenue a Hack-Covid-19</Text>
+      <View style={tailwind(' items-center ')} >
+        <Text style={tailwind('text-gray-700 font-bold py-2 text-9xl')}>Bienvenue a </Text>
+        <Text style={tailwind('text-gray-700 font-bold py-2 text-9xl')}>Plate-forme sars cov 2</Text>
+        <Text style={tailwind('text-gray-700 font-bold py-2 text-9xl')}>et autre maladie infectieuse</Text>
+        </View>
         <View style={tailwind('py-4')}>
           <FormButton title="Ajouter un patient" onPress={() => props.navigation.navigate("AddPatient")} />
           <FormButton title=" Rechercher un patient " onPress={() => props.navigation.navigate("SearchPatient")} />
