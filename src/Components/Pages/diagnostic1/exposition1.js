@@ -6,11 +6,11 @@ import { View, Text, StyleSheet } from 'react-native';
 import FormInput from '../../Form/FormInput';
 import FormButton from '../../Form/FormButton';
 import { medicalService } from '../../../Reducers/medicalService';
-import { DatePicker } from '@assenti/rui-components';
 import '@assenti/rui-components/css/index.css';
 import Container from '@material-ui/core/Container';
 import ParticlesBg from "particles-bg";
 import '../home.css';
+import Steps from "../../Form/Steps";
 let config = {
       num: [4, 7],
       rps: 0.1,
@@ -27,9 +27,36 @@ let config = {
     };
 
 
-const Exposition1 = (props) => {
 
+const Exposition = (props) => {
 
+  var handleTypeSdate = (data) => {
+    setDateD(data.target.value)     
+       }
+           var handleTypeSdate1 = (data) => {
+            setDateF(data.target.value)     
+               }
+               var handleTypeSdate2 = (data) => {
+                setDateEnt(data.target.value)     
+                   }
+                   var handleTypeSdate3 = (data) => {
+                    setDateV1(data.target.value)     
+                       }
+                       var handleTypeSdate4 = (data) => {
+                        setDateV2(data.target.value)     
+                           }
+                           var handleTypeSdate5 = (data) => {
+                            setDateDebutC(data.target.value)     
+                               }
+                               var handleTypeSdate6 = (data) => {
+                                setDateFinC(data.target.value)     
+                                   }
+                                   var handleTypeSdate7 = (data) => {
+                                    setDateDQu(data.target.value)     
+                                       }
+                                       var handleTypeSdate8 = (data) => {
+                                        setDateFQu(data.target.value)     
+                                           }
 
   //component test variable
   const [sejour, setSejour] = useState(false)
@@ -190,22 +217,24 @@ const Exposition1 = (props) => {
     console.log(values)
 
     props.addExposition(props.patientList["cin"], values)
-    props.navigation.navigate("PatientDetails")
+    props.navigation.navigate("AddAntecendentsMedicaux1")
   }
   return (
-
     <div>
-    <div class="big">
-    <Container style={{backgroundColor:"rgba(200,200,200,0.75)",backgroundsize: "cover"}} component="main" maxWidth="xs" >
+<div class="big">
+<View style={styles.row}>s
+<Container style={{backgroundColor:"rgba(200,200,200,0.75)",backgroundsize: "cover"}} component="main" maxWidth="xs" >
+
+
 
       <View style={tailwind(' items-center ')} >
         <Text style={tailwind('text-gray-700 font-bold py-2 text-xl ')}>Expositions à Risque </Text>
-        <Text style={tailwind('text-gray-700 font-bold py-2  text-center')}>Patient:{props.patientList["generalInformation"]["nom"] + " " + props.patientList["generalInformation"]["prenom"]}</Text>
+        <Text style={tailwind('text-gray-700 font-bold py-2 ')}>Patient:{props.patientList["generalInformation"]["nom"] + " " + props.patientList["generalInformation"]["prenom"]}</Text>
 
 
         <View style={tailwind(' items-center ')}>
           <FormButton title="Séjour ou transit dans une zone a risque" onPress={handleSejourChange}/>
-           <View style={tailwind('items-center ')}>
+          {sejour == true && <View style={tailwind('items-center ')}>
           <Text style={tailwind('text-gray-700 py-2')}>Réside habituellement dans la zone a risque  ?</Text>
           <div>
           <input  onChange={habiteHandleChange} type="radio" value="Oui" name="gender" /> <Text style={tailwind('text-gray-700 py-2')}>Oui</Text>
@@ -213,131 +242,60 @@ const Exposition1 = (props) => {
           <input  onChange={habiteHandleChange} type="radio" value="row" name="gender" /> <Text style={tailwind('text-gray-700 py-2')}>row</Text>
         </div>
             <Text>Séjour ou transit dans zone risque ?</Text>
-            <DatePicker
-            color="primary"
-            placeholder="YYYY-MM-DD"
-            value={dateD}
-            clearable
-            minDate="1920-05-01"
-            maxDate={new Date()}
-            onDate={(dateD) => {
-            setDateD(dateD)
-            }}
-            onClear={() => setDateD('')}
-            width={250}
-            onChange={(value) => setDateD(value)}/>
-            <DatePicker
-            color="primary"
-            placeholder="YYYY-MM-DD"
-            value={dateF}
-            clearable
-            minDate="1920-05-01"
-            maxDate={new Date()}
-            onDate={(dateF) => {
-            setDateF(dateF)
-            }}
-            onClear={() => setDateF('')}
-            width={250}
-            onChange={(value) => setDateF(value)}/>
-
-
-
+            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Du ?</Text>
+            <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate}/>
+            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Au ?</Text>
+            <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate1}/>
+            
+          </View>
+          }
           <FormButton title="Arivée sur le territoire tunisien" onPress={handleAriveeChange}/>
-         <View style={tailwind("items-center")}>
-          <DatePicker
-          color="primary"
-          placeholder="YYYY-MM-DD"
-          value={dateEnt}
-          clearable
-          minDate="1920-05-01"
-          maxDate={new Date()}
-          onDate={(dateEnt) => {
-          setDateEnt(dateEnt)
-          }}
-          onClear={() => setDateEnt('')}
-          width={250}
-          onChange={(value) => setDateEnt(value)}/>
+          {arivee == true && <View style={tailwind("items-center")}>
+          <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date d'arrivée en Tunisie?</Text>
+          <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate2}/>
+          
             <FormInput placeholder="Lieu d'entrée" onChangeText={handleLieuEnt} />
             <FormInput placeholder="Moyen de transport" onChangeText={handletMoyensTran} />
-
+          </View>}
           <FormButton title="Parcours en Tunisie" onPress={handleParousChange}/>
-           <View style={tailwind("items-center")}>
+          {(parcours == true) && <View style={tailwind("items-center")}>
             <FormInput placeholder="Villes visités en Tunisie" onChangeText={handleVillesPar} />
-            <DatePicker
-            color="primary"
-            placeholder="YYYY-MM-DD"
-            value={dateV1}
-            clearable
-            minDate="1920-05-01"
-            maxDate={new Date()}
-            onDate={(dateV1) => {
-            setDateV1(dateV1)
-            }}
-            onClear={() => setDateV1('')}
-            width={250}
-            onChange={(value) => setDateV1(value)}/>
+            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date d'arrivée ville 1</Text>
+            <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate3}/>
+            
             <FormInput placeholder="Moyens de transport" onChangeText={handleMoyenTranV1} />
-            <DatePicker
-            color="primary"
-            placeholder="YYYY-MM-DD"
-            value={dateV2}
-            clearable
-            minDate="1920-05-01"
-            maxDate={new Date()}
-            onDate={(dateV2) => {
-            setDateV2(dateV2)
-            }}
-            onClear={() => setDateV2('')}
-            width={250}
-            onChange={(value) => setDateV2(value)}/>
+            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date d'arrivée ville 2</Text>
+            <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate4}/>
+            
             <FormInput placeholder="Moyens de transport" onChangeText={handleMoyenTranV2} />
             <FormInput placeholder="Moyen de transport quotidien" onChangeText={handleMoyenTranQu} />
 
-
+          </View>}
           <FormButton title="Contact étroit" onPress={handleEtroitChange}/>
-           <View style={tailwind("items-center")}>
-           <Text style={tailwind('text-gray-700 py-2')}>Contact avec un cas confirmé ou suspect ?</Text>
+          {
+            (etroit == true) && (<View style={tailwind("items-center")}>
         <div>
+	         <Text style={tailwind('text-gray-700 py-2')}>Contact avec un cas confirmé ou suspect ?</Text>
           <input  onChange={handleContactCChange} type="radio" value="Oui" name="gender1" /> <Text style={tailwind('text-gray-700 py-2')}>Oui</Text>
           <input  onChange={handleContactCChange} type="radio" value="Non" name="gender1" /> <Text style={tailwind('text-gray-700 py-2')}>Non</Text>
           <input  onChange={handleContactCChange} type="radio" value="Ne sait pas" name="gender1" /> <Text style={tailwind('text-gray-700 py-2')}>Ne sait pas</Text>
           <input  onChange={handleContactCChange} type="radio" value="row" name="gender1" /> <Text style={tailwind('text-gray-700 py-2')}>row</Text>
         </div>
+            </View>
+            )}
+          {(contactC === "Oui" && etroit == true) && (<View style={tailwind("items-center")}>
+          <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Du ?</Text>
+          <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate5}/>
+          <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Au ?</Text>
+          <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate6}/>
 
-          <View style={tailwind("items-center")}>
-          <DatePicker
-          color="primary"
-          placeholder="YYYY-MM-DD"
-          value={dateDebutC}
-          clearable
-          minDate="1920-05-01"
-          maxDate={new Date()}
-          onDate={(dateDebutC) => {
-          setDateDebutC(dateDebutC)
-          }}
-          onClear={() => setDateDebutC('')}
-          width={250}
-          onChange={(value) => setDateDebutC(value)}/>
-          <DatePicker
-          color="primary"
-          placeholder="YYYY-MM-DD"
-          value={dateFinC}
-          clearable
-          minDate="1920-05-01"
-          maxDate={new Date()}
-          onDate={(dateFinC) => {
-          setDateFinC(dateFinC)
-          }}
-          onClear={() => setDateFinC('')}
-          width={250}
-          onChange={(value) => setDateFinC(value)}/>
             <FormInput placeholder="Identifiant en Tunisie" type="number-pad" onChangeText={handleIdTun} />
-
+          </View>)}
 
           <FormButton title="Autres critères ayant conduit au classement en cas possible" onPress={handleAutresChange}/>
-           <View style={tailwind("items-center")}>
-           <Text style={tailwind('text-gray-700 py-2')}>Contact avec un cas confirmé ou suspect ?</Text>
+          {(autres == true) && <View style={tailwind("items-center")}>
           <div>
+             <Text style={tailwind('text-gray-700 py-2')}>Contact avec un cas confirmé ou suspect ?</Text>
             <input  onChange={handleAutreBoxChange} type="radio" value="Oui" name="gender2" /> <Text style={tailwind('text-gray-700 py-2')}>Oui</Text>
             <input  onChange={handleAutreBoxChange} type="radio" value="Non" name="gender2" /> <Text style={tailwind('text-gray-700 py-2')}>Non</Text>
             <input  onChange={handleAutreBoxChange} type="radio" value="NSP" name="gender2" /> <Text style={tailwind('text-gray-700 py-2')}>NSP</Text>
@@ -346,50 +304,34 @@ const Exposition1 = (props) => {
             {autreBox === "Oui" && <FormInput placeholder="Précisier" onChangeText={handleDetailsChange} />}
 
 
-
+          </View>}
           <FormButton title="Mise en quarantine" onPress={handleQuarantineChange}/>
-           <View style={tailwind("items-center")}>
+          {(quarantine == true) && <View style={tailwind("items-center")}>
           <div>
              <Text style={tailwind('text-gray-700 py-2')}>Mise en quarantine ?</Text>
             <input  onChange={handleMiseQuarantineChange} type="radio" value="Oui" name="gender3" /> <Text style={tailwind('text-gray-700 py-2')}>Oui</Text>
             <input  onChange={handleMiseQuarantineChange} type="radio" value="Non" name="gender3" /> <Text style={tailwind('text-gray-700 py-2')}>Non</Text>
             <input  onChange={handleMiseQuarantineChange} type="radio" value="row" name="gender3" /> <Text style={tailwind('text-gray-700 py-2')}>row</Text>
           </div>
-
-
-          <View style={tailwind('items-center')}>
-          <DatePicker
-          color="primary"
-          placeholder="YYYY-MM-DD"
-          value={dateDQu}
-          clearable
-          minDate="1920-05-01"
-          maxDate={new Date()}
-          onDate={(dateDQu) => {
-          setDateDQu(dateDQu)
-          }}
-          onClear={() => setDateDQu('')}
-          width={250}
-          onChange={(value) => setDateDQu(value)}/>
-          <DatePicker
-          color="primary"
-          placeholder="YYYY-MM-DD"
-          value={dateFDQu}
-          clearable
-          minDate="1920-05-01"
-          maxDate={new Date()}
-          onDate={(dateFDQu) => {
-          setDateFQu(dateFDQu)
-          }}
-          onClear={() => setDateFQu('')}
-          width={250}
-          onChange={(value) => setDateFQu(value)}/>
+            <Text style={tailwind('text-gray-700 py-2')}>  Mise en quarantine ?</Text>
+          </View>}
+          {(quarantine == true && miseQuarantine === "Oui") && <View style={tailwind('items-center')}>
+          <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}></Text>
+          <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate7}/>
+          <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}></Text>
+          <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate8}/>
+          
           <div>
              <Text style={tailwind('text-gray-700 py-2')}>Respect de la quarantine ?</Text>
             <input  onChange={handleRespectChange} type="radio" value="Oui" name="gender4" /> <Text style={tailwind('text-gray-700 py-2')}>Oui</Text>
             <input  onChange={handleRespectChange} type="radio" value="Non" name="gender4" /> <Text style={tailwind('text-gray-700 py-2')}>Non</Text>
             <input  onChange={handleRespectChange} type="radio" value="row" name="gender4" /> <Text style={tailwind('text-gray-700 py-2')}>row</Text>
           </div>
+          </View>}
+
+
+
+
           <View style={tailwind("items-center")}>
         <View style={styles.row}>
           <FormButton title="Retour" onPress={() => { props.navigation.navigate("AddPatient") }} />
@@ -400,15 +342,9 @@ const Exposition1 = (props) => {
       </View>
 </View>
       </View>
-      </View>
-      </View>
-      </View>
-      </View>
-      </View>
-      </View>
-      </View>
-      </View>
       </Container>
+      <Steps current={2} /> 
+</View>
 </div>
 <ParticlesBg type="cobweb" config={config} bg={true} />
 </div>
@@ -435,4 +371,4 @@ const mapActionToProps = {
   //login: actions.login,
   addExposition: actions.addExposition
 };
-export default connect(mapStateToProps, mapActionToProps)(Exposition1);
+export default connect(mapStateToProps, mapActionToProps)(Exposition);

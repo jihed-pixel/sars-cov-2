@@ -12,6 +12,7 @@ import '@assenti/rui-components/css/index.css';
 import Container from '@material-ui/core/Container';
 import ParticlesBg from "particles-bg";
 import '../home.css';
+import Steps from "../../Form/Steps";
 let config = {
       num: [4, 7],
       rps: 0.1,
@@ -28,7 +29,8 @@ let config = {
     };
 
 
-const ExamBio = (props) => {
+
+const ExamBio1 = (props) => {
   const [type, setType] = useState("NFS")
   const [datePr, setDatePr] = useState();
   //NFS
@@ -78,8 +80,23 @@ const ExamBio = (props) => {
   const [test, setTest] = useState()
 
 
-
+  var handleTypeSdate = (data) => {
+    setDatePr(data.target.value)     
+       }
+       var handleTypeSdate1 = (data) => {
+        setDatePr(data.target.value)     
+           }
+           var handleTypeSdate2 = (data) => {
+            setDatePr(data.target.value)     
+               }
+               var handleTypeSdate3 = (data) => {
+                setDatePr(data.target.value)     
+                   }
+                   var handleTypeSdate4 = (data) => {
+                    setDatePr(data.target.value)     
+                       }
   var handleSubmit = () => {
+    
     var values = {
       datePr: datePr,
       type: type,
@@ -134,9 +151,10 @@ const ExamBio = (props) => {
   }
 
   return (
-    <div>
-    <div class="big">
-    <Container style={{backgroundColor:"rgba(200,200,200,0.75)",backgroundsize: "cover"}} component="main" maxWidth="xs" >
+<div>
+<div class="big">
+<View style={styles.row}>
+<Container style={{backgroundColor:"rgba(200,200,200,0.75)",backgroundsize: "cover"}} component="main" maxWidth="xs" >
       <View style={tailwind("items-center")}>
       <Text style={tailwind('text-gray-700 font-bold py-2 text-xl text-center')}>Examens Biologiques</Text>
       <Text style={tailwind('text-gray-700 font-bold py-2  text-center')}>Patient:{props.patientList["generalInformation"]["nom"] + " " + props.patientList["generalInformation"]["prenom"]}</Text>
@@ -155,90 +173,45 @@ const ExamBio = (props) => {
 
 
       {
-        type === "NFS" && <View style={tailwind("items-center py-5")}>
+        type === "NFS" && <View style={tailwind("items-center py-12")}>
           <FormInput placeholder="GB" onChangeText={setGb} type="decimal-pad" />
           <FormInput placeholder="Lymphocyte" onChangeText={setLym} type="decimal-pad" />
           <FormInput placeholder="Plaquette" onChangeText={setPla} type="decimal-pad" />
           <FormInput placeholder="Hb" onChangeText={setHb} type="decimal-pad" />
           <FormInput placeholder="Ht" onChangeText={setHt} type="decimal-pad" />
           <FormButton title="Enregitrer" onPress={handleSubmit} type="decimal-pad" />
-          <View style={tailwind("items-center py-5")}>
-        <FormButton title="Retour" onPress={() => props.navigation.navigate("ExamenRadioParaCli1")} />
-        <FormButton title="Pass" onPress={() => props.navigation.navigate("Traitement1")} />
-      </View>
+
         </View>
       }
       {
-        type === "BilanRenal" && <View style={tailwind("items-center py-5")}>
-        <DatePicker
-        color="primary"
-        placeholder="YYYY-MM-DD"
-        value={datePr}
-        clearable
-        minDate="1920-05-01"
-        maxDate={new Date()}
-        onDate={(datePr) => {
-        setDatePr(datePr)
-        }}
-        onClear={() => setDatePr('')}
-        width={250}
-        onChange={(value) => setDatePr(value)}/>
+        type === "BilanRenal" && <View style={tailwind("items-center py-12")}>
+        <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de prise de l'examen</Text>
+          <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate}/>
           <FormInput placeholder="Creat" onChangeText={setCreat} type="decimal-pad" />
           <FormInput placeholder="Clairance de la creat" onChangeText={setClairCreat} type="decimal-pad" />
           <FormInput placeholder="Urée" onChangeText={setUree} type="decimal-pad" />
           <FormButton title="Enregitrer" onPress={handleSubmit} />
-          <View style={tailwind("items-center py-5")}>
-          <FormButton title="Retour" onPress={() => props.navigation.navigate("ExamenRadioParaCli1")} />
-          <FormButton title="Pass" onPress={() => props.navigation.navigate("Traitement1")} />
-
-
-        </View>
         </View>
       }
       {
-        type === "GDSA" && <View style={tailwind("items-center py-5")}>
-        <DatePicker
-        color="primary"
-        placeholder="YYYY-MM-DD"
-        value={datePr}
-        clearable
-        minDate="1920-05-01"
-        maxDate={new Date()}
-        onDate={(datePr) => {
-        setDatePr(datePr)
-        }}
-        onClear={() => setDatePr('')}
-        width={250}
-        onChange={(value) => setDatePr(value)}/>
+        type === "GDSA" && <View style={tailwind("items-center py-12")}>
+        <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de prise de l'examen</Text>
+          <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate1}/>
+        
           <FormInput placeholder="pH" onChangeText={setPh} type="decimal-pad" />
           <FormInput placeholder="PaO2" onChangeText={setPao2} type="decimal-pad" />
           <FormInput placeholder="PaCO2" onChangeText={setPaco2} type="decimal-pad" />
           <FormInput placeholder="HCO3-" onChangeText={setHco3_} type="decimal-pad" />
           <FormInput placeholder="SaO2" onChangeText={setSao2} type="decimal-pad" />
           <FormButton title="Enregitrer" onPress={handleSubmit} />
-          <View style={tailwind("items-center py-5")}>
-          <FormButton title="Retour" onPress={() => props.navigation.navigate("ExamenRadioParaCli1")} />
-          <FormButton title="Pass" onPress={() => props.navigation.navigate("Traitement1")} />
 
-
-          </View>
         </View>
       }
       {
-        type === "BilanHepa" && <View style={tailwind("items-center py-5")}>
-        <DatePicker
-        color="primary"
-        placeholder="YYYY-MM-DD"
-        value={datePr}
-        clearable
-        minDate="1920-05-01"
-        maxDate={new Date()}
-        onDate={(datePr) => {
-        setDatePr(datePr)
-        }}
-        onClear={() => setDatePr('')}
-        width={250}
-        onChange={(value) => setDatePr(value)}/>
+        type === "BilanHepa" && <View style={tailwind("items-center py-12")}>
+        <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de prise de l'examen</Text>
+          <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate2}/>
+        
           <FormInput placeholder="Bilirubine (T)" onChangeText={setBiliru} type="decimal-pad" />
           <FormInput placeholder="Bilirubine (D)" onChangeText={setBiliru1} type="decimal-pad" />
           <FormInput placeholder="ALAT" onChangeText={setAlat} type="decimal-pad" />
@@ -256,67 +229,38 @@ const ExamBio = (props) => {
           <FormInput placeholder="Procalcitonine" onChangeText={setProcal} type="decimal-pad" />
           <FormInput placeholder="FErritinemie" onChangeText={setFerri} type="decimal-pad" />
           <FormButton title="Enregitrer" onPress={handleSubmit} />
-          <View style={tailwind("items-center py-5")}>
-          <FormButton title="Retour" onPress={() => props.navigation.navigate("ExamenRadioParaCli1")} />
-          <FormButton title="Pass" onPress={() => props.navigation.navigate("Traitement1")} />
 
-
-          </View>
 
         </View>
       }
       {
-        type === "Ionogra" && <View style={tailwind("items-center py-5")}>
-        <DatePicker
-        color="primary"
-        placeholder="YYYY-MM-DD"
-        value={datePr}
-        clearable
-        minDate="1920-05-01"
-        maxDate={new Date()}
-        onDate={(datePr) => {
-        setDatePr(datePr)
-        }}
-        onClear={() => setDatePr('')}
-        width={250}
-        onChange={(value) => setDatePr(value)}/>
+        type === "Ionogra" && <View style={tailwind("items-center py-12")}>
+        <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de prise de l'examen</Text>
+          <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate3}/>
+        
           <FormInput placeholder="Na+" onChangeText={setNak} type="decimal-pad" />
           <FormInput placeholder="K+" onChangeText={setNak1} type="decimal-pad" />
           <FormInput placeholder="Na+ urinaire" onChangeText={setNakUr} type="decimal-pad" />
           <FormInput placeholder="K+ urinaire" onChangeText={setNakUr1} type="decimal-pad" />
           <FormButton title="Enregitrer" onPress={handleSubmit} />
-          <View style={tailwind("items-center py-5")}>
-          <FormButton title="Retour" onPress={() => props.navigation.navigate("ExamenRadioParaCli1")} />
-          <FormButton title="Pass" onPress={() => props.navigation.navigate("Traitement1")} />
 
-
-          </View>
         </View>
       }
       {
-        type === "Autre" && <View style={tailwind("items-center py-5")}>
-        <DatePicker
-        color="primary"
-        placeholder="YYYY-MM-DD"
-        value={datePr}
-        clearable
-        minDate="1920-05-01"
-        maxDate={new Date()}
-        onDate={(datePr) => {
-        setDatePr(datePr)
-        }}
-        onClear={() => setDatePr('')}
-        width={250}
-        onChange={(value) => setDatePr(value)}/>
-        <View style={tailwind("items-center py-5")}>
-        <FormButton title="Retour" onPress={() => props.navigation.navigate("ExamenRadioParaCli1")} />
-        <FormButton title="Pass" onPress={() => props.navigation.navigate("Traitement1")} />
-      </View>
+        type === "Autre" && <View style={tailwind("items-center py-12")}>
+        <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de prise de l'examen</Text>
+          <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate4}/>
+        
         </View>
       }
-
+      <View style={tailwind("items-center py-12")}>
+      <FormButton title="Retour" onPress={() => props.navigation.navigate("ExamenRadioParaCli1")} />
+        <FormButton title="Pass" onPress={() => props.navigation.navigate("Traitement1")} />
+      </View>
       </View>
       </Container>
+      <Steps current={10} /> 
+</View>
 </div>
 <ParticlesBg type="cobweb" config={config} bg={true} />
 </div>
@@ -343,4 +287,4 @@ const mapActionToProps = {
   logout: actions.logout,
   addExamBio: actions.addExamBio
 };
-export default connect(mapStateToProps, mapActionToProps)(ExamBio);
+export default connect(mapStateToProps, mapActionToProps)(ExamBio1);

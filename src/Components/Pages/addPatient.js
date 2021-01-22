@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import FormInput from "../Form/FormInput";
 import tailwind from 'tailwind-rn';
-
+import Steps from "../Form/Steps";
 import FormButton from '../Form/FormButton';
 import * as actions from "../../Actions/medicalService";
 import { connect } from "react-redux";
-import { DatePicker } from '@assenti/rui-components';
-import '@assenti/rui-components/css/index.css';
+import { enGB } from 'date-fns/locale'
+import { DatePicker } from 'react-nice-dates'
+import 'react-nice-dates/build/style.css'
 import "bootstrap/dist/css/bootstrap.min.css";
 import './addPatient.css';
 import Container from '@material-ui/core/Container';
@@ -149,6 +150,7 @@ const AddPatient = (props) => {
   return (
     <div>
 <div class="big">
+<View style={styles.row}>
 <Container style={{backgroundColor:"rgba(200,200,200,0.75)",backgroundsize: "cover"}} component="main" maxWidth="xs" >
     <div >
     <div >
@@ -191,20 +193,14 @@ const AddPatient = (props) => {
         </View>
         <Text style={tailwind('text-gray-700 py-2')}> Date De Naissance ?</Text>
         <div style={tailwind(' items-center ')}>
-        <DatePicker
-        color="primary"
-        placeholder="YYYY-MM-DD"
-        value={date}
-        clearable
-        minDate="1920-05-01"
-        maxDate="2000-05-01"
-        onDate={(date) => {
-          setDate(date)
-        }}
-        onClear={() => setDate('')}
-        width={250}
-
-        onChange={(value) => setDate(value)}/>
+        <DatePicker date={date} onDateChange={setDate} locale={enGB}>
+      {({ inputProps, focused }) => (
+        <input
+          className={'input' + (focused ? ' -focused' : '')}
+          {...inputProps}
+        />
+      )}
+    </DatePicker>
         </div>
         <FormInput
           placeholder="Adresse"
@@ -308,6 +304,8 @@ const AddPatient = (props) => {
     </View>
 </div></div>
 </Container>
+<Steps  /> 
+</View>
 </div>
 <ParticlesBg type="cobweb" config={config} bg={true} />
 </div>

@@ -11,6 +11,7 @@ import '@assenti/rui-components/css/index.css';
 import Container from '@material-ui/core/Container';
 import ParticlesBg from "particles-bg";
 import '../home.css';
+import Steps from "../../Form/Steps";
 let config = {
       num: [4, 7],
       rps: 0.1,
@@ -30,8 +31,7 @@ let config = {
 
 
 
-
-const ExamenRadioParaCli1 = (props) => {
+const ExamenRadioParaCli = (props) => {
 
   const [type, setType] = useState("Thorax")
   const [datePr, setDatePr] = useState()
@@ -41,7 +41,7 @@ const ExamenRadioParaCli1 = (props) => {
   const [nbQua, setNbQua] = useState()
 
   var handleCheckBoxChange = (newValue, text) => {
-    if (newValue == true) setResult(result + text + " ")
+    if (newValue === true) setResult(result + text + " ")
     else { setResult(result.replace(text + " ", "")) }
 
   }
@@ -82,7 +82,7 @@ const ExamenRadioParaCli1 = (props) => {
       datepr: datePr
     }
     props.addExamRadioParaCli(props.patientList["cin"], values)
-    props.navigation.navigate("DiagnosticDetails")
+    props.navigation.navigate("ExamBio1")
     console.log(values)
 
   }
@@ -91,9 +91,11 @@ const ExamenRadioParaCli1 = (props) => {
   return (
     <div>
 <div class="big">
+<View style={styles.row}>
 <Container style={{backgroundColor:"rgba(200,200,200,0.75)",backgroundsize: "cover"}} component="main" maxWidth="xs" >
     <View>
       <Text style={tailwind('text-gray-700 font-bold py-2 text-xl text-center')}>Examens radiologiques et para-cliniques</Text>
+      <Text style={tailwind('text-gray-700 font-bold py-2  text-center')}>Patient:{props.patientList["generalInformation"]["nom"] + " " + props.patientList["generalInformation"]["prenom"]}</Text>
       <View style={tailwind(' items-center ')} >
       <div>
       <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Ajouter un examen?</Text>
@@ -117,7 +119,7 @@ const ExamenRadioParaCli1 = (props) => {
       width={250}
       onChange={(value) => setDatePr(value)}/>
 
-      
+      </View>
       {
         type === "Thorax" && <View style={tailwind("items-center py-2")}>
           <div>
@@ -183,11 +185,12 @@ const ExamenRadioParaCli1 = (props) => {
         <FormButton title="Pass" onPress={() => props.navigation.navigate("ExamBio1")} />
       </View>
     </View>
-    </View>
     </Container>
-    </div>
-    <ParticlesBg type="cobweb" config={config} bg={true} />
-    </div>
+      <Steps current={8} /> 
+</View>
+</div>
+<ParticlesBg type="cobweb" config={config} bg={true} />
+</div>
   );
 };
 const styles = StyleSheet.create({
@@ -211,4 +214,4 @@ const mapActionToProps = {
   logout: actions.logout,
   addExamRadioParaCli: actions.addExamRadioParaCli
 };
-export default connect(mapStateToProps, mapActionToProps)(ExamenRadioParaCli1);
+export default connect(mapStateToProps, mapActionToProps)(ExamenRadioParaCli);

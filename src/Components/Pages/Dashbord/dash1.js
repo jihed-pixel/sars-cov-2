@@ -33,7 +33,7 @@ function Dash1(props) {
         <h4>React upload Files</h4>
       </div>
       <UploadFiles />
-      <FormButton title="Retour" onPress={() => { props.navigation.navigate("Home") }} />
+      <FormButton title="Retour" onPress={() => { props.navigation.navigate("SearchPatient") }} />
     </div>
     </Container>
 </div>

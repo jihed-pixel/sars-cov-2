@@ -6,7 +6,6 @@ import * as actions from "../../../Actions/medicalService";
 import { connect } from "react-redux";
 import { View, Text, StyleSheet } from 'react-native';
 import FormCheckBox from "../../Form/CheckBox";
-import { DatePicker } from '@assenti/rui-components';
 import '@assenti/rui-components/css/index.css';
 import Container from '@material-ui/core/Container';
 import ParticlesBg from "particles-bg";
@@ -30,9 +29,10 @@ let config = {
 
 
 
-
 const ExamenRadioParaCli = (props) => {
-
+  var handleTypeSdate = (data) => {
+    setDatePr(data.target.value)     
+       }
   const [type, setType] = useState("Thorax")
   const [datePr, setDatePr] = useState()
   const [result, setResult] = useState("Normale")
@@ -94,6 +94,7 @@ const ExamenRadioParaCli = (props) => {
 <Container style={{backgroundColor:"rgba(200,200,200,0.75)",backgroundsize: "cover"}} component="main" maxWidth="xs" >
     <View>
       <Text style={tailwind('text-gray-700 font-bold py-2 text-xl text-center')}>Examens radiologiques et para-cliniques</Text>
+      <Text style={tailwind('text-gray-700 font-bold py-2  text-center')}>Patient:{props.patientList["generalInformation"]["nom"] + " " + props.patientList["generalInformation"]["prenom"]}</Text>
       <View style={tailwind(' items-center ')} >
       <div>
       <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Ajouter un examen?</Text>
@@ -103,21 +104,11 @@ const ExamenRadioParaCli = (props) => {
     </div>
     </View>
       <View style={tailwind("items-center")}>
-      <DatePicker
-      color="primary"
-      placeholder="YYYY-MM-DD"
-      value={datePr}
-      clearable
-      minDate="1920-05-01"
-      maxDate={new Date()}
-      onDate={(datePr) => {
-      setDatePr(datePr)
-      }}
-      onClear={() => setDatePr('')}
-      width={250}
-      onChange={(value) => setDatePr(value)}/>
-
+      <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de prise</Text>
+      <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate}/>
       
+
+      </View>
       {
         type === "Thorax" && <View style={tailwind("items-center py-2")}>
           <div>
@@ -183,11 +174,11 @@ const ExamenRadioParaCli = (props) => {
 
       </View>
     </View>
-    </View>
     </Container>
-    </div>
-    <ParticlesBg type="cobweb" config={config} bg={true} />
-    </div>
+</div>
+<ParticlesBg type="cobweb" config={config} bg={true} />
+</div>
+
   );
 };
 const styles = StyleSheet.create({

@@ -12,6 +12,7 @@ import ParticlesBg from "particles-bg";
 import './home.css';
 import SideNav from '../Form/SideNav'
 import MaskedInput from "react-text-mask";
+
 const Login = (props) => {
   let config = {
       num: [4, 7],

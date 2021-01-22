@@ -8,6 +8,7 @@ import FormButton from "../../Form/FormButton";
 import Container from '@material-ui/core/Container';
 import ParticlesBg from "particles-bg";
 import '../home.css';
+import Steps from "../../Form/Steps";
 let config = {
       num: [4, 7],
       rps: 0.1,
@@ -47,10 +48,11 @@ const SearchPatient1 = (props) => {
   return (
     <div>
     <div class="big">
+    <View style={styles.row}>
     <Container style={{backgroundColor:"rgba(200,200,200,0.75)",backgroundsize: "cover"}} component="main" maxWidth="xs" >
 
       <View style={tailwind(' items-center ')} >
-        <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Rechercher un patient12</Text>
+        <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Rechercher un patient</Text>
         <View style={tailwind('py-8 items-center')}>
 
           <FormInput
@@ -93,6 +95,8 @@ const SearchPatient1 = (props) => {
         </View>
       </View>
       </Container>
+      <Steps current={1} /> 
+</View>
 </div>
 <ParticlesBg type="cobweb" config={config} bg={true} />
 </div>

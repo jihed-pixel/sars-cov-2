@@ -67,11 +67,12 @@ const Immunosuppreseur = (props) => {
     <div class="big">
     <Container style={{backgroundColor:"rgba(200,200,200,0.75)",backgroundsize: "cover"}} component="main" maxWidth="xs" >
       <View style={tailwind(' items-center ')} >
-        <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Traitement Immunosuppreseur</Text>
+        <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de prise</Text>
 
         <FormInput placeholder="Dose " type="decimal-pad" onChangeText={handleDoseChange} />
         <FormInput placeholder="Molecule" onChangeText={handleMoleculeChange} />
         <FormInput placeholder="Duree" type="decimal-pad" onChangeText={handleDureeChange} />
+        <Text style={tailwind('text-gray-700 py-2')}>Traitement Immunosuppreseur</Text>
         <DatePicker
          color="primary"
          placeholder="YYYY-MM-DD"

@@ -331,7 +331,7 @@ export const login = (values) => (dispatch) => {
         payload: response.data,
       });
       const loggedUser = response.data;
-      if (loggedUser == "Please enter the password and the username") {
+      if (loggedUser == "") {
         localStorage.setItem("loggedUser", JSON.stringify(null))
       } else if (loggedUser == "Username or/and password is/are incorrect") {
         localStorage.setItem("loggedUser", JSON.stringify(null))

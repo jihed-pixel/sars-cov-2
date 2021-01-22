@@ -5,7 +5,6 @@ import * as actions from "../../../Actions/medicalService";
 import { connect } from "react-redux";
 import { View, Text, StyleSheet } from 'react-native';
 import FormInput from '../../Form/FormInput';
-import { DatePicker } from '@assenti/rui-components';
 import '@assenti/rui-components/css/index.css';
 import Container from '@material-ui/core/Container';
 import ParticlesBg from "particles-bg";
@@ -25,6 +24,7 @@ let config = {
       random: 10
     };
 
+
 const Admission = (props) => {
   const [type, setType] = useState("hhop")
   const [lieu, setLieu] = useState("chez lui")
@@ -35,8 +35,12 @@ const Admission = (props) => {
   const [hopital, setHopital] = useState()
   const [service, setService] = useState()
 
-
+  var handleTypeSdate = (data) => {
+    setDateEnt(data.target.value)
+       }
   var handleModeCB = (data) => {
+    
+         
     if (data.target.value==="0") {
       setMode("Transfert inter-hopital")
       setModeCB("Transfert inter-hopital")
@@ -104,7 +108,7 @@ const Admission = (props) => {
     console.log(values)
     console.log(props.patientList["cin"])
     props.addAdmission(props.patientList["cin"], values)
-    props.navigation.navigate("DiagnosticDetails")
+    //props.navigation.navigate("DiagnosticDetails")
 
   }
 
@@ -124,33 +128,20 @@ const Admission = (props) => {
       </View>
       {
         type === "hhop" && <View style={tailwind("items-center")}>
-        <View style={tailwind("items-center")}>
-        <Text style={tailwind('text-gray-700 py-2')}>Précisier le lieu?</Text>
         <View style={styles.row}>
           <div>
+        <Text style={tailwind('text-gray-700 py-2')}>Précisier le lieu?</Text>
             <input  onChange={handleLieuCB} type="radio" value="0" name="gender1" /> <Text style={tailwind('text-gray-700 py-2')}>Chez lui</Text>
             <input  onChange={handleLieuCB} type="radio" value="1" name="gender1" /> <Text style={tailwind('text-gray-700 py-2')}>Dans un centre d'isolement</Text>
             <input  onChange={handleLieuCB} type="radio" value="2" name="gender1" /> <Text style={tailwind('text-gray-700 py-2')}>Autre</Text>
           </div>
-          </View>
+
         </View>
           {lieuCB === "autre" && <FormInput placeholder="..." onChangeText={handleLieuChange} />}
           {lieuCB === "centre" && <FormInput placeholder="Préciser le quel" onChangeText={handleLieuChange} />}
             <View style={styles.row}>
-
-          <DatePicker
-          color="primary"
-          placeholder="YYYY-MM-DD"
-          value={dateEnt}
-          clearable
-          minDate="1920-05-01"
-          maxDate={new Date()}
-          onDate={(dateEnt) => {
-          setDateEnt(dateEnt)
-          }}
-          onClear={() => setDateEnt('')}
-          width={250}
-          onChange={(value) => setDateEnt(value)}/>
+            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date d'entée?</Text>
+            <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate}/>
           </View>
         </View>
       }
@@ -158,27 +149,16 @@ const Admission = (props) => {
         type === "hop" && <View style={tailwind("items-center")}>
           <FormInput placeholder="Hopital" onChangeText={handleHopitalChange} />
           <FormInput placeholder="Service" onChangeText={handleServiceChange} />
-          <DatePicker
-          color="primary"
-          placeholder="YYYY-MM-DD"
-          value={dateEnt}
-          clearable
-          minDate="1920-05-01"
-          maxDate={new Date()}
-          onDate={(dateEnt) => {
-          setDateEnt(dateEnt)
-          }}
-          onClear={() => setDateEnt('')}
-          width={250}
-          onChange={(value) => setDateEnt(value)}/>
+          <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date d'entée?</Text>
+          <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate}/>
           <View style={styles.row}>
         <div>
 	  <Text style={tailwind('text-gray-700 py-2')}>Mode d'entrée?</Text>
-        <div>  <input  onChange={handleModeCB} type="radio" value="0" name="gender2" /> <Text style={tailwind('text-gray-700 py-2')}>Transfert inter-hopital</Text>
+          <input  onChange={handleModeCB} type="radio" value="0" name="gender2" /> <Text style={tailwind('text-gray-700 py-2')}>Transfert inter-hopital</Text>
           <input  onChange={handleModeCB} type="radio" value="1" name="gender2" /> <Text style={tailwind('text-gray-700 py-2')}>Transfert inter-service</Text>
-          </div><input  onChange={handleModeCB} type="radio" value="2" name="gender2" /> <Text style={tailwind('text-gray-700 py-2')}>Urgences</Text>
+          <input  onChange={handleModeCB} type="radio" value="2" name="gender2" /> <Text style={tailwind('text-gray-700 py-2')}>Urgences</Text>
           <input  onChange={handleModeCB} type="radio" value="3" name="gender2" /> <Text style={tailwind('text-gray-700 py-2')}>SAMU</Text>
-          <input  onChange={handleModeCB} type="radio" value="4" name="gender2" /> <Text style={tailwind('text-gray-700 py-2')}>D'un lieu d'isolement</Text>
+          <input  onChange={handleModeCB} type="radio" value="4" name="gender2" /> <Text style={tailwind('text-gray-700 py-2')}>D'un lieu d'isolement(Chez lui ou centre)</Text>
           <input  onChange={handleModeCB} type="radio" value="5" name="gender2" /> <Text style={tailwind('text-gray-700 py-2')}>Autre</Text>
         </div>
       </View>
@@ -187,13 +167,6 @@ const Admission = (props) => {
 
         </View>
       }
-      <View style={tailwind("items-center py-8")}>
-        <View style={styles.row}>
-          <FormButton title="Retour" onPress={() => { props.navigation.navigate("DiagnosticDetails") }} />
-          <FormButton title="Enregistrer" onPress={handleSubmit} />
-
-        </View>
-      </View>
       </View>
       </Container>
 </div>

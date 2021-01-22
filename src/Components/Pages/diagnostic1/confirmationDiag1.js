@@ -5,18 +5,52 @@ import * as actions from "../../../Actions/medicalService";
 
 import { connect } from "react-redux";
 import { View, Text, StyleSheet } from 'react-native';
-import { DatePicker } from '@assenti/rui-components';
+
 import '@assenti/rui-components/css/index.css';
 import Container from '@material-ui/core/Container';
 import ParticlesBg from "particles-bg";
 import '../home.css';
+import Steps from "../../Form/Steps";
+let config = {
+      num: [4, 7],
+      rps: 0.1,
+      radius: [5, 40],
+      life: [1.5, 3],
+      v: [2, 3],
+      tha: [-50, 50],
+      alpha: [0.6, 0],
+      scale: [.1, 0.9],
+      position: "all",
+      color: [ "#ff0000"],
+      cross: "dead",
+      random: 10
+    };
 
 const ConfirmationDiag = (props) => {
   const [test, setTest] = useState("Pcr")
   const [datePr, setDatePr] = useState()
   const [type, setType] = useState("Nasopharyngé")
   const [resultat, setResultat] = useState("Positif")
-
+  var handleTypeSdate = (data) => {
+    setDatePr(data.target.value)
+     
+   
+       }
+       var handleTypeSdate1 = (data) => {
+        setDatePr(data.target.value)
+         
+       
+           }
+           var handleTypeSdate2 = (data) => {
+            setDatePr(data.target.value)
+            
+           
+               }
+               var handleTypeSdate3 = (data) => {
+                setDatePr(data.target.value)
+                
+               
+                   }
   var handleSubmit = (e) => {
     e.preventDefault();
     var values = {
@@ -46,27 +80,16 @@ const ConfirmationDiag = (props) => {
       setResultat(data.target.value)
 
   }
-  let config = {
-        num: [4, 7],
-        rps: 0.1,
-        radius: [5, 40],
-        life: [1.5, 3],
-        v: [2, 3],
-        tha: [-50, 50],
-        alpha: [0.6, 0],
-        scale: [.1, 0.9],
-        position: "all",
-        color: [ "#ff0000"],
-        cross: "dead",
-        random: 10
-      };
+
   return (
     <div>
 <div class="big">
+<View style={styles.row}>
 <Container style={{backgroundColor:"rgba(200,200,200,0.75)",backgroundsize: "cover"}} component="main" maxWidth="xs" >
 <View>
       <Text style={tailwind('text-gray-700 font-bold py-2 text-xl text-center')}>Confirmation diagnostique</Text>
       <Text style={tailwind('text-gray-700 font-bold py-2  text-center')}>Patient:{props.patientList["generalInformation"]["nom"] + " " + props.patientList["generalInformation"]["prenom"]}</Text>
+
       <View style={tailwind(' items-center ')} >
       <div  >
       <Text style={tailwind(" text-gray-700 text-center pt-8 pb-2")}>Type de confirmation ?</Text>
@@ -77,19 +100,8 @@ const ConfirmationDiag = (props) => {
       </div>
       </View>
       {test === "Pcr" && <View style={tailwind("items-center py-6")}>
-      <DatePicker
-      color="primary"
-      placeholder="YYYY-MM-DD"
-      value={datePr}
-      clearable
-      minDate="1920-05-01"
-      maxDate={new Date()}
-      onDate={(datePr) => {
-      setDatePr(datePr)
-      }}
-      onClear={() => setDatePr('')}
-      width={250}
-      onChange={(value) => setDatePr(value)}/>
+      <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de prise ?</Text>
+      <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate}/>
         <View style={tailwind(' items-center ')} >
         <div  >
         <Text style={tailwind(" text-gray-700 text-center pt-8 pb-2")}>Type ?</Text>
@@ -107,29 +119,11 @@ const ConfirmationDiag = (props) => {
         <div>  <input onChange={handleResulat1Change} type="radio" value="Douteux" name="gender2" /> <Text style={tailwind('text-gray-700 py-2')}>Douteux</Text></div>
         </div>
         </View>
-        <View style={tailwind("items-center")}>
-        <View style={styles.row}>
-          <FormButton title="Retour" onPress={() => { props.navigation.navigate("HabitudesDeVie1") }} />
-          <FormButton title="Suivant" onPress={handleSubmit} />
-        </View>
-        <FormButton title="Pass" onPress={() => { props.navigation.navigate("Admission1") }} />
-
-      </View>
       </View> }
       {test === "RapideAc" && <View style={tailwind("items-center py-6")}>
-      <DatePicker
-      color="primary"
-      placeholder="YYYY-MM-DD"
-      value={datePr}
-      clearable
-      minDate="1920-05-01"
-      maxDate={new Date()}
-      onDate={(datePr) => {
-      setDatePr(datePr)
-      }}
-      onClear={() => setDatePr('')}
-      width={250}
-      onChange={(value) => setDatePr(value)}/>
+      <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de prise ?</Text>
+      <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate1}/>
+      
         <View style={tailwind(' items-center ')} >
         <div  >
         <Text style={tailwind(" text-gray-700 text-center pt-8 pb-2")}>Resultat ?</Text>
@@ -138,30 +132,12 @@ const ConfirmationDiag = (props) => {
         <div>  <input onChange={handleResultatChange} type="radio" value="row" name="gender3" /> <Text style={tailwind('text-gray-700 py-2')}>row</Text></div>
         </div>
         </View>
-        <View style={tailwind("items-center")}>
-        <View style={styles.row}>
-          <FormButton title="Retour" onPress={() => { props.navigation.navigate("HabitudesDeVie1") }} />
-          <FormButton title="Suivant" onPress={handleSubmit} />
-        </View>
-        <FormButton title="Pass" onPress={() => { props.navigation.navigate("Admission1") }} />
-
-      </View>
       </View>
       }
       {test === "RapideAg" && <View style={tailwind("items-center py-6")}>
-      <DatePicker
-      color="primary"
-      placeholder="YYYY-MM-DD"
-      value={datePr}
-      clearable
-      minDate="1920-05-01"
-      maxDate={new Date()}
-      onDate={(datePr) => {
-      setDatePr(datePr)
-      }}
-      onClear={() => setDatePr('')}
-      width={250}
-      onChange={(value) => setDatePr(value)}/>
+      <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de prise ?</Text>
+      <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate2}/>
+      
         <View style={tailwind(' items-center ')} >
         <div  >
         <Text style={tailwind(" text-gray-700 text-center pt-8 pb-2")}>Resultat ?</Text>
@@ -170,30 +146,12 @@ const ConfirmationDiag = (props) => {
         <div>  <input onChange={handleResultatChange} type="radio" value="row" name="gender4" /> <Text style={tailwind('text-gray-700 py-2')}>row</Text></div>
         </div>
         </View>
-        <View style={tailwind("items-center")}>
-        <View style={styles.row}>
-          <FormButton title="Retour" onPress={() => { props.navigation.navigate("HabitudesDeVie1") }} />
-          <FormButton title="Suivant" onPress={handleSubmit} />
-        </View>
-        <FormButton title="Pass" onPress={() => { props.navigation.navigate("Admission1") }} />
-
-      </View>
       </View>
       }
       {test === "Serologie" && <View style={tailwind("items-center py-6")}>
-      <DatePicker
-      color="primary"
-      placeholder="YYYY-MM-DD"
-      value={datePr}
-      clearable
-      minDate="1920-05-01"
-      maxDate={new Date()}
-      onDate={(datePr) => {
-      setDatePr(datePr)
-      }}
-      onClear={() => setDatePr('')}
-      width={250}
-      onChange={(value) => setDatePr(value)}/>
+      <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de prise ?</Text>
+      <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate3}/>
+      
         <View style={tailwind(' items-center ')} >
         <div  >
         <Text style={tailwind(" text-gray-700 text-center pt-8 pb-2")}>Resultat ?</Text>
@@ -202,7 +160,9 @@ const ConfirmationDiag = (props) => {
         <div>  <input onChange={handleResultatChange} type="radio" value="row" name="gender5" /> <Text style={tailwind('text-gray-700 py-2')}>row</Text></div>
         </div>
         </View>
-        <View style={tailwind("items-center")}>
+      </View>
+      }
+      <View style={tailwind("items-center")}>
         <View style={styles.row}>
           <FormButton title="Retour" onPress={() => { props.navigation.navigate("HabitudesDeVie1") }} />
           <FormButton title="Suivant" onPress={handleSubmit} />
@@ -211,13 +171,12 @@ const ConfirmationDiag = (props) => {
 
       </View>
       </View>
-      }
-      
-      </View>
       </Container>
-      </div>
-      <ParticlesBg type="cobweb" config={config} bg={true} />
-      </div>
+      <Steps current={4} /> 
+</View>
+</div>
+<ParticlesBg type="cobweb" config={config} bg={true} />
+</div>
   );
 };
 const styles = StyleSheet.create({

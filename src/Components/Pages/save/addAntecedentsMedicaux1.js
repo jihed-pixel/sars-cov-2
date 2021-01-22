@@ -7,6 +7,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import Container from '@material-ui/core/Container';
 import ParticlesBg from "particles-bg";
 import '../home.css';
+import Steps from "../../Form/Steps";
 let config = {
       num: [4, 7],
       rps: 0.1,
@@ -30,6 +31,7 @@ const AddAntecendentsMedicaux1 = (props) => {
   return (
     <div>
 <div class="big">
+<View style={styles.row}>
 <Container style={{backgroundColor:"rgba(200,200,200,0.75)",backgroundsize: "cover"}} component="main" maxWidth="xs" >
       <View style={tailwind(' items-center ')} >
         <Text style={tailwind('text-gray-700 font-bold py-2 text-xl text-center')}>Antécédents medicaux</Text>
@@ -61,6 +63,8 @@ const AddAntecendentsMedicaux1 = (props) => {
         <FormButton title="Pass" onPress={() => { props.navigation.navigate("HabitudesDeVie1") }} />
       </View>
       </Container>
+      <Steps current={2} /> 
+</View>
 </div>
 <ParticlesBg type="cobweb" config={config} bg={true} />
 </div>

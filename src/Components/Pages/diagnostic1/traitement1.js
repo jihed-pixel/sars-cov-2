@@ -5,11 +5,11 @@ import FormButton from '../../Form/FormButton';
 import * as actions from "../../../Actions/medicalService";
 import { connect } from "react-redux";
 import { View, Text, StyleSheet } from 'react-native';
-import { DatePicker } from '@assenti/rui-components';
 import '@assenti/rui-components/css/index.css';
 import Container from '@material-ui/core/Container';
 import ParticlesBg from "particles-bg";
 import '../home.css';
+import Steps from "../../Form/Steps";
 let config = {
       num: [4, 7],
       rps: 0.1,
@@ -27,7 +27,14 @@ let config = {
 
 
 
+
 const Traitement = (props) => {
+  var handleTypeSdate = (data) => {
+    setDateD(data.target.value)     
+       }
+       var handleTypeSdate1 = (data) => {
+        setDateF(data.target.value)     
+           }
   useEffect(() => {
     props.getTraitment(props.patientList["cin"], {
       trai: trai
@@ -126,8 +133,9 @@ const Traitement = (props) => {
   }
 
   return (
-    <div>
+<div>
 <div class="big">
+<View style={styles.row}>
 <Container style={{backgroundColor:"rgba(200,200,200,0.75)",backgroundsize: "cover"}} component="main" maxWidth="xs" >
     <View>
       <Text style={tailwind('text-gray-700 font-bold py-2 text-xl text-center')}>Traitement</Text>
@@ -214,32 +222,11 @@ const Traitement = (props) => {
         {
           (oper === "A") && <View style={tailwind("items-center ")}>
             <FormInput placeholder={"Dosage"} onChangeText={setDosage}  />
-            <DatePicker
-            color="primary"
-            placeholder="YYYY-MM-DD"
-            value={dateD}
-            clearable
-            minDate="1920-05-01"
-            maxDate={new Date()}
-            onDate={(dateD) => {
-            setDateD(dateD)
-            }}
-            onClear={() => setDateD('')}
-            width={250}
-            onChange={(value) => setDateD(value)}/>
-            <DatePicker
-            color="primary"
-            placeholder="YYYY-MM-DD"
-            value={dateF}
-            clearable
-            minDate="1920-05-01"
-            maxDate={new Date()}
-            onDate={(dateF) => {
-            setDateF(dateF)
-            }}
-            onClear={() => setDateF('')}
-            width={250}
-            onChange={(value) => setDateF(value)}/>
+            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de debut</Text>
+            <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate}/>
+            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de fin</Text>
+            <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate1}/>
+            
           </View>
         }
         {
@@ -248,32 +235,11 @@ const Traitement = (props) => {
         {
           oper === "M" && typeof (props.traitmentList) !== "string" && props.traitmentList !== null && <View style={tailwind("items-center")}>
             <FormInput placeholder={"Doage/Debit:" + props.traitmentList["dosage"]} editable="false" />
-            <DatePicker
-            color="primary"
-            placeholder="YYYY-MM-DD"
-            value={dateD}
-            clearable
-            minDate="1920-05-01"
-            maxDate={new Date()}
-            onDate={(dateD) => {
-            setDateD(dateD)
-            }}
-            onClear={() => setDateD('')}
-            width={250}
-            onChange={(value) => setDateD(value)}/>
-            <DatePicker
-            color="primary"
-            placeholder="YYYY-MM-DD"
-            value={dateF}
-            clearable
-            minDate="1920-05-01"
-            maxDate={new Date()}
-            onDate={(dateF) => {
-            setDateF(dateF)
-            }}
-            onClear={() => setDateF('')}
-            width={250}
-            onChange={(value) => setDateF(value)}/>
+            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de debut</Text>
+            <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate}/>
+            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date fin</Text>
+            <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate1}/>
+            
           </View>
         }
       </View>
@@ -287,9 +253,11 @@ const Traitement = (props) => {
       </View>
     </View>
     </Container>
-    </div>
-    <ParticlesBg type="cobweb" config={config} bg={true} />
-    </div>
+      <Steps current={10} /> 
+</View>
+</div>
+<ParticlesBg type="cobweb" config={config} bg={true} />
+</div>
   );
 };
 

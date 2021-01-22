@@ -6,15 +6,12 @@ import { connect } from "react-redux";
 import { View, Text, StyleSheet } from 'react-native';
 import FormInput from '../../Form/FormInput';
 import FormInput2 from '../../Form/FormInput2';
-import { DatePicker } from '@assenti/rui-components';
 import '@assenti/rui-components/css/index.css';
 import Container from '@material-ui/core/Container';
 import ParticlesBg from "particles-bg";
 import '../home.css';
-
-
-const EvaluationFinale = (props) => {
-  let config = {
+import Steps from "../../Form/Steps";
+let config = {
       num: [4, 7],
       rps: 0.1,
       radius: [5, 40],
@@ -28,12 +25,21 @@ const EvaluationFinale = (props) => {
       cross: "dead",
       random: 10
     };
+
+
+
+const EvaluationFinale = (props) => {
   const [dateSor, setDateSor] = useState()
   const [deces, setDeces] = useState(false)
   const [dateDispSig, setDateDispSig] = useState()
   const [causesDir, setCausesDir] = useState()
   const [causesIndir, setCausesIndir] = useState()
-
+  var handleTypeSdate = (data) => {
+    setDateSor(data.target.value)
+       }
+       var handleTypeSdate = (data) => {
+        setDateDispSig(data.target.value)
+           }
   var handleDecesChange = (data) => {
     if (data.target.value==="non")
       setDeces(false)
@@ -50,32 +56,22 @@ const EvaluationFinale = (props) => {
     }
     //console.log(values)
     props.addEvaluationFinale(props.patientList["cin"], values)
-    props.navigation.navigate("PatientDetails")
+    props.navigation.navigate("SearchPatient")
   }
 
 
   return (
     <div>
 <div class="big">
+<View style={styles.row}>
 <Container style={{backgroundColor:"rgba(200,200,200,0.75)",backgroundsize: "cover"}} component="main" maxWidth="xs" >
     <View style={tailwind("items-center py-8")}>
       <Text style={tailwind('text-gray-700 font-bold py-2 text-xl text-center')}>Evaluation finale</Text>
       <Text style={tailwind('text-gray-700 font-bold py-2  text-center')}>Patient:{props.patientList["generalInformation"]["nom"] + " " + props.patientList["generalInformation"]["prenom"]}</Text>
       <View style={tailwind("items-center py-8")}>
-      <DatePicker
-      color="primary"
-      placeholder="YYYY-MM-DD"
-      value={dateSor}
-      clearable
-      minDate="1920-05-01"
-      maxDate={new Date()}
-      onDate={(dateSor) => {
-      setDateSor(dateSor)
-      }}
-      onClear={() => setDateSor('')}
-      width={250}
-      onChange={(value) => setDateSor(value)}/>
-
+      <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de sortie?</Text>
+      <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate}/>
+      </View>
       <View style={tailwind("items-center")}>
         <View style={styles.row}>
         <Text style={tailwind("text-gray-700")}>Décès</Text>
@@ -85,20 +81,10 @@ const EvaluationFinale = (props) => {
         </div>
         </View>
         {
-          deces === false &&
-          <DatePicker
-          color="primary"
-          placeholder="YYYY-MM-DD"
-          value={dateDispSig}
-          clearable
-          minDate="1920-05-01"
-          maxDate={new Date()}
-          onDate={(dateDispSig) => {
-          setDateDispSig(dateDispSig)
-          }}
-          onClear={() => setDateDispSig('')}
-          width={250}
-          onChange={(value) => setDateDispSig(value)}/>
+          deces === false &&<View style={tailwind("items-center py-8")}>
+          <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de disparition des signes</Text>
+          <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate}/>
+          </View>
         }
         {
           deces === true && <View style={tailwind("items-center")}>
@@ -107,19 +93,19 @@ const EvaluationFinale = (props) => {
           </View>
         }
 
-
+      </View>
 
       <View style={tailwind("items-center py-8")}>
         <View style={styles.row}>
           <FormButton title="Retour" onPress={() => { props.navigation.navigate("evolution1") }} />
           <FormButton title="Suivant" onPress={handleSubmit} />
         </View>
-        <FormButton title="Pass" onPress={() => { props.navigation.navigate("PatientDetails") }} />
-      </View>
-      </View>
+        <FormButton title="Pass" onPress={() => { props.navigation.navigate("SearchPatient") }} />
       </View>
       </View>
       </Container>
+      <Steps current={12} /> 
+</View>
 </div>
 <ParticlesBg type="cobweb" config={config} bg={true} />
 </div>

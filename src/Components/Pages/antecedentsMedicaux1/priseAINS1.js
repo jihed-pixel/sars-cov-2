@@ -69,6 +69,7 @@ const PriseAINS1 = (props) => {
         <FormInput placeholder="Dose " type="decimal-pad" onChangeText={handleDoseChange} />
         <FormInput placeholder="Molecule" onChangeText={handleMoleculeChange} />
         <FormInput placeholder="Duree" type="number-pad" onChangeText={handleDureeChange} />
+        <Text style={tailwind('text-gray-700 py-2')}>Date de prise</Text>
         <DatePicker
         color="primary"
         placeholder="YYYY-MM-DD"

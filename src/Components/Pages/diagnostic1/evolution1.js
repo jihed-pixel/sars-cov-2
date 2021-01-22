@@ -11,6 +11,22 @@ import '@assenti/rui-components/css/index.css';
 import Container from '@material-ui/core/Container';
 import ParticlesBg from "particles-bg";
 import '../home.css';
+import Steps from "../../Form/Steps";
+let config = {
+      num: [4, 7],
+      rps: 0.1,
+      radius: [5, 40],
+      life: [1.5, 3],
+      v: [2, 3],
+      tha: [-50, 50],
+      alpha: [0.6, 0],
+      scale: [.1, 0.9],
+      position: "all",
+      color: [ "#ff0000"],
+      cross: "dead",
+      random: 10
+    };
+
 const Evolution = (props) => {
 
   //dateTime picker
@@ -23,22 +39,8 @@ const Evolution = (props) => {
   const hideDatePicker = () => {
     setDatePickerVisibility(false);
   };
-  let config = {
-    num: [4, 7],
-    rps: 0.1,
-    radius: [5, 40],
-    life: [1.5, 3],
-    v: [2, 3],
-    tha: [-50, 50],
-    alpha: [0.6, 0],
-    scale: [.1, 0.9],
-    position: "all",
-    color: [ "#ff0000"],
-    cross: "dead",
-    random: 10
-  };
-  const handleConfirm = (date) => {
 
+  const handleConfirm = (date) => {
     //date.setTime(date.getTime()-date.getTimezoneOffset()*60*1000)
     setTime(date)
     hideDatePicker();
@@ -187,13 +189,15 @@ const Evolution = (props) => {
   return (
     <div>
 <div class="big">
+<View style={styles.row}>
 <Container style={{backgroundColor:"rgba(200,200,200,0.75)",backgroundsize: "cover"}} component="main" maxWidth="xs" >
     <View style={tailwind("px-8 py-8 ")}>
       <Text style={tailwind('text-gray-700 font-bold py-2 text-xl text-center')}>Evolution</Text>
       <Text style={tailwind('text-gray-700 font-bold py-2  text-center')}>Patient:{props.patientList["generalInformation"]["nom"] + " " + props.patientList["generalInformation"]["prenom"]}</Text>
       <View style={tailwind("items-center py-8")}>
         <FormButton title="Evolution quotidienne" onPress={() => { setCategory("evaluValues"); setType("Température"); setValidation() }}/>
-         <View style={tailwind("items-center")}>
+        {
+          category === "evaluValues" && <View style={tailwind("items-center")}>
           <div  >
 
           <div>  <input onChange={handleTypeChange} type="radio" value="Température" name="gender" /> <Text style={tailwind('text-gray-700 py-2')}>Température</Text></div>
@@ -222,14 +226,19 @@ const Evolution = (props) => {
                 <div>  <input onChange={handleValueCb} type="radio" value="row" name="gender1" /> <Text style={tailwind('text-gray-700 py-2')}>row</Text></div>
                 </div>
               </View>
-
             }
+
+
+
+
+
             <FormButton title="Enregistrer" onPress={handleSubmit} />
           </View>
 
-        
+        }
         <FormButton title="Transfert en USI" onPress={() => { setCategory("USI"); setValidation(); setType("IRA grave (3)"); }}/>
-         <View >
+        {
+          category === "USI" && <View >
             <Text style={tailwind("text-red-500 font-bold p-4 text-center")}>Choisir la méthode de transfert ?</Text>
             <div  >
             <div>  <input onChange={handleTypeChange} type="radio" value="IRA grave (3)" name="gender2" /> <Text style={tailwind('text-gray-700 py-2')}>IRA grave (3)</Text></div>
@@ -271,9 +280,10 @@ const Evolution = (props) => {
 
           </View>
 
-        
+        }
         <FormButton title="Assistance respiratoire" onPress={() => { setCategory("AssResp"); setValidation() }}/>
-        <View >
+        {
+          category === "AssResp" && <View >
             <Text style={tailwind("text-red-500 font-bold p-4 text-center")}>{validation}</Text>
             <Text style={tailwind("text-center text-gray-700 p-2 text-center")}>Choisir la méthode de transfert ?</Text>
 
@@ -321,10 +331,11 @@ const Evolution = (props) => {
               <FormButton title="Enregistrer" onPress={handleSubmit} />
             </View>
           </View>
-        
+        }
         <FormButton title="Evolution de l'isolement/hospitalisation" onPress={() => { setCategory("Evolution"); setValidation(); setType("IHH"); setHospi(true) }}/>
 
-         <View >
+        {
+          category === "Evolution" && <View >
                  <Text style={tailwind("text-red-500 font-bold p-4 text-center")}>{validation}</Text>
                  <View style={styles.row}>
                  <div>
@@ -430,7 +441,7 @@ const Evolution = (props) => {
 
           </View>
 
-        
+        }
 
       </View>
 
@@ -441,6 +452,8 @@ const Evolution = (props) => {
       </View>
       </View>
       </Container>
+      <Steps current={11} /> 
+</View>
 </div>
 <ParticlesBg type="cobweb" config={config} bg={true} />
 </div>

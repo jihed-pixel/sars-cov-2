@@ -6,11 +6,11 @@ import { connect } from "react-redux";
 import { View, Text, StyleSheet } from 'react-native';
 import FormInput from '../../Form/FormInput';
 import FormInput2 from '../../Form/FormInput2';
-import { DatePicker } from '@assenti/rui-components';
 import '@assenti/rui-components/css/index.css';
 import Container from '@material-ui/core/Container';
 import ParticlesBg from "particles-bg";
 import '../home.css';
+import { Value } from 'react-native-reanimated';
 let config = {
       num: [4, 7],
       rps: 0.1,
@@ -25,7 +25,28 @@ let config = {
       cross: "dead",
       random: 10
     };
+   
 const Evolution = (props) => {
+  var handleTypeSdate1 = (data) => {
+    setDateD(data.target.value)
+    
+   
+       }
+       var handleTypeSdate2 = (data) => {
+        setDateF(data.target.value)
+        
+       
+           }
+           var handleTypeSdate3 = (data) => {
+            setDateS(data.target.value)
+             
+           
+               }
+               var handleTypeSdate4 = (data) => {
+                setDateH(data.target.value)
+                
+               
+                   }
 
   //dateTime picker
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -48,6 +69,8 @@ const Evolution = (props) => {
   const [type, setType] = useState()
   const [time, setTime] = useState()
   const [value, setValue] = useState()
+  const [value1, setValue1] = useState()
+  const [value2, setValue2] = useState()
   const [validation, setValidation] = useState()
 
   const [dateD, setDateD] = useState()
@@ -75,16 +98,19 @@ const Evolution = (props) => {
  setTypeS(data.target.value)
 
     }
-
-
-
-  var handleValueCb = (data) => {
-    if (data.target.value==="oui")
-      setValue(1.0)
-    if (data.target.value==="non")
-      setValue(0.0)
-  }
-
+    var handleTypeSChange1 = (data) => {
+      setValue(data.target.value)
+      console. log({Value}) 
+     
+         }
+         var handleTypeSChange2 = (data) => {
+          setValue1(data.target.value)
+         
+             }
+             var handleTypeSChange3 = (data) => {
+              setValue2(data.target.value)
+             
+                 }
   var handleEvolutionType = (data) => {
     if (data.target.value==="0") {
       setType("IHH")
@@ -108,55 +134,14 @@ const Evolution = (props) => {
     }
 
   var handleSubmit = () => {
-    if (type === "Température" && (value > 43 || value < 30)) {
-      setValidation("La temperature doit etre comprise entre 30et 43 °C !")
-      return
-    }
-
-    if (type === "SaO2" && (value > 100 || value < 0)) {
-      setValidation("Le pourcentage de SaO2  doit etre compris entre 0 % et 100 % !");
-      return
-    }
-
-
-    if (type === "FR" && (value > 250 || value < 0)) {
-      setValidation("La valuer du FR doit etre comprise entre 0 et 250 C/min !");
-      return
-    }
-
-    if (type === "FC" && (value > 150 || value < 0)) {
-      setValidation("La valuer du FC doit etre comprise entre 0 et 150 C/min !");
-      return
-    }
-    if (type === "Score de glasgow" && (value > 15 || value < 0)) {
-      setValidation("Le score de Glasgow doit etre entre 0 et 15 !");
-      return
-    }
-    if (category === "USI") {
-      if (dateD === undefined) { setValidation("La date du transfert au USI est obligatoire !"); return; }
-      if (saps2 === undefined) { setValidation("SAPS2 est obligatoire"); return; }
-      if (saps2 > 194) { setValidation("SAPS2 doit etre compris entre 0 et 194 "); return; }
-      if (apache2 === undefined) { setValidation("APACHE2 est obligatoire !"); return }
-      if (apache2 > 74) { setValidation("APACHE 2 doit etre compris entre 0 et 74"); return }
-      if (sofa > 24) { setValidation("SOFA doit etre compris entre 0 et 24"); return }
-
-    }
-
-    if (category === "AssResp") {
-      if (dateD === undefined) { setValidation("La date de début est obligatoire!"); return; }
-
-    }
-    if(category ==="Evolution"){
-      if(dateS === undefined) {setValidation("La date de sortie est obligatoire");return}
-    }
-
-
-
+    
     var values = {
       time: time,
       type: type,
       category: category,
       value: value,
+      value1: value1,
+      value2: value2,
       dateD: dateD,
       dateF: dateF,
       apache2: apache2,
@@ -175,6 +160,8 @@ const Evolution = (props) => {
     setCategory()
     setTime()
     setValue()
+    setValue1()
+    setValue2()
     setDateF()
     setDateD()
     setSofa()
@@ -190,9 +177,11 @@ const Evolution = (props) => {
 <Container style={{backgroundColor:"rgba(200,200,200,0.75)",backgroundsize: "cover"}} component="main" maxWidth="xs" >
     <View style={tailwind("px-8 py-8 ")}>
       <Text style={tailwind('text-gray-700 font-bold py-2 text-xl text-center')}>Evolution</Text>
+      <Text style={tailwind('text-gray-700 font-bold py-2  text-center')}>Patient:{props.patientList["generalInformation"]["nom"] + " " + props.patientList["generalInformation"]["prenom"]}</Text>
       <View style={tailwind("items-center py-8")}>
         <FormButton title="Evolution quotidienne" onPress={() => { setCategory("evaluValues"); setType("Température"); setValidation() }}/>
-         <View style={tailwind("items-center")}>
+        {
+          category === "evaluValues" && <View style={tailwind("items-center")}>
           <div>
 
           <div>  <input  onChange={handleTypeChange} type="radio" value="Température" name="gender" /> <Text style={tailwind('text-gray-700 py-2')}>Température</Text></div>
@@ -208,63 +197,32 @@ const Evolution = (props) => {
           <div>   <input  onChange={handleTypeChange} type="radio" value="Score de glasgow" name="gender" /> <Text style={tailwind('text-gray-700 py-2')}>Score de glasgow</Text></div>
           </div>
             <Text style={tailwind("text-red-500 font-bold pt-4 text-center")}>{validation}</Text>
-            {(type === "Température" || type === "SaO2" || type === "Besoin en O2" || type === "TA" || type === "FR" || type === "FC" || type === "Score de glasgow") &&
-              <FormInput placeholder={type} type="decimal-pad" onChangeText={setValue} />
+            {(type === "Signes de lutte" || type === "Froideur" || type === "Marbrures" || type === "Angoisse/Agitation" || type === "Température" || type === "SaO2" || type === "Besoin en O2" || type === "TA" || type === "FR" || type === "FC" || type === "Score de glasgow") &&
+              <View style={tailwind("items-center")}>
+                <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date d’amélioration</Text>
+              <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSChange1}/>
+              <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date d’aggravation</Text>
+              <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSChange2}/>
+              <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de réapparition</Text>
+              <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSChange3}/></View>
             }
-            {
-              (type === "Signes de lutte" || type === "Froideur" || type === "Marbrures" || type === "Angoisse/Agitation") &&
-              <View style={styles.row}>
-                <Text style={tailwind("py-1 pr-4")}>{type + "?"}</Text>
-                <div>
-                <div>  <input  onChange={handleValueCb} type="radio" value="oui" name="gender1" /> <Text style={tailwind('text-gray-700 py-2')}>Oui</Text></div>
-                <div>  <input  onChange={handleValueCb} type="radio" value="non" name="gender1" /> <Text style={tailwind('text-gray-700 py-2')}>Non</Text></div>
-                <div>  <input  onChange={handleValueCb} type="radio" value="row" name="gender1" /> <Text style={tailwind('text-gray-700 py-2')}>row</Text></div>
-                </div>
-              </View>
-            }
-
-
-
-
-
             <FormButton title="Enregistrer" onPress={handleSubmit} />
           </View>
 
-        
+        }
         <FormButton title="Transfert en USI" onPress={() => { setCategory("USI"); setValidation(); setType("IRA grave (3)"); }}/>
-         <View >
+        {
+          category === "USI" && <View >
             <Text style={tailwind("text-red-500 font-bold p-4 text-center")}>Choisir la méthode de transfert ?</Text>
             <div>
             <div>  <input  onChange={handleTypeChange} type="radio" value="IRA grave (3)" name="gender2" /> <Text style={tailwind('text-gray-700 py-2')}>IRA grave (3)</Text></div>
             <div>  <input  onChange={handleTypeChange} type="radio" value="Sepsis/Choc septique" name="gender2" /> <Text style={tailwind('text-gray-700 py-2')}>Sepsis/Choc septique</Text></div>
             </div>
             <View style={tailwind("items-center")}>
-            <DatePicker
-            color="primary"
-            placeholder="YYYY-MM-DD"
-            value={dateD}
-            clearable
-            minDate="1920-05-01"
-            maxDate={new Date()}
-            onDate={(dateD) => {
-            setDateD(dateD)
-            }}
-            onClear={() => setDateD('')}
-            width={250}
-            onChange={(value) => setDateD(value)}/>
-              <DatePicker
-              color="primary"
-              placeholder="YYYY-MM-DD"
-              value={dateF}
-              clearable
-              minDate="1920-05-01"
-              maxDate={new Date()}
-              onDate={(dateF) => {
-              setDateF(dateF)
-              }}
-              onClear={() => setDateF('')}
-              width={250}
-              onChange={(value) => setDateF(value)}/>
+            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date début</Text>
+            <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate1}/>
+            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date fin</Text>
+            <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate2}/>
               <FormInput placeholder={"SAPS 2"} onChangeText={setSaps2} type="decimal-pad" maxLength={Number("8")} />
               <FormInput placeholder={"APACHE 2"} onChangeText={setApache2} type="decimal-pad" maxLength={Number("8")} />
               <FormInput placeholder={"SOFA"} onChangeText={setSofa} type="decimal-pad" maxLength={Number("8")} />
@@ -274,9 +232,10 @@ const Evolution = (props) => {
 
           </View>
 
-        
+        }
         <FormButton title="Assistance respiratoire" onPress={() => { setCategory("AssResp"); setValidation() }}/>
-         <View >
+        {
+          category === "AssResp" && <View >
             <Text style={tailwind("text-red-500 font-bold p-4 text-center")}>{validation}</Text>
             <Text style={tailwind("text-center text-gray-700 p-2 text-center")}>Choisir la méthode de transfert ?</Text>
 
@@ -295,39 +254,18 @@ const Evolution = (props) => {
 
 
             <View style={tailwind("items-center")}>
-            <DatePicker
-            color="primary"
-            placeholder="YYYY-MM-DD"
-            value={dateD}
-            clearable
-            minDate="1920-05-01"
-            maxDate={new Date()}
-            onDate={(dateD) => {
-            setDateD(dateD)
-            }}
-            onClear={() => setDateD('')}
-            width={250}
-            onChange={(value) => setDateD(value)}/>
-              <DatePicker
-              color="primary"
-              placeholder="YYYY-MM-DD"
-              value={dateF}
-              clearable
-              minDate="1920-05-01"
-              maxDate={new Date()}
-              onDate={(dateF) => {
-              setDateF(dateF)
-              }}
-              onClear={() => setDateF('')}
-              width={250}
-              onChange={(value) => setDateF(value)}/>
+            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date début</Text>
+            <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate1}/>
+            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date fin</Text>
+            <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate2}/>
               <FormButton title="Enregistrer" onPress={handleSubmit} />
             </View>
           </View>
-        
+        }
         <FormButton title="Evolution de l'isolement/hospitalisation" onPress={() => { setCategory("Evolution"); setValidation(); setType("IHH"); setHospi(true) }}/>
 
-         <View >
+        {
+          category === "Evolution" && <View >
                  <Text style={tailwind("text-red-500 font-bold p-4 text-center")}>{validation}</Text>
                  <View style={styles.row}>
                  <div>
@@ -339,19 +277,8 @@ const Evolution = (props) => {
             {
               type === "IHH" && <View style={tailwind("")}>
                 <View style={tailwind("items-center")}>
-                <DatePicker
-                color="primary"
-                placeholder="YYYY-MM-DD"
-                value={dateS}
-                clearable
-                minDate="1920-05-01"
-                maxDate={new Date()}
-                onDate={(dateS) => {
-                setDateS(dateS)
-                }}
-                onClear={() => setDateS('')}
-                width={250}
-                onChange={(value) => setDateS(value)}/>
+                <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de sortie?</Text>
+                <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate3}/>
                 </View>
                 <View style={styles.row}>
                   <Text style={tailwind("text-gray-700 py-2 ")}>Hospitalisé ?</Text>
@@ -364,19 +291,10 @@ const Evolution = (props) => {
                 </View>
                 {
                   hospi === true && <View style={tailwind("items-center")}>
-                  <DatePicker
-                  color="primary"
-                  placeholder="YYYY-MM-DD"
-                  value={dateH}
-                  clearable
-                  minDate="1920-05-01"
-                  maxDate={new Date()}
-                  onDate={(dateH) => {
-                  setDateH(dateH)
-                  }}
-                  onClear={() => setDateH('')}
-                  width={250}
-                  onChange={(value) => setDateH(value)}/>
+                    <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date d'hospitalisation?</Text>
+                    <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate4}/>
+                  
+                  
 
                     <FormInput placeholder="Hopital" onChangeText={setHopital} />
                     <FormInput placeholder="Service" onChangeText={setService} />
@@ -401,19 +319,9 @@ const Evolution = (props) => {
 
             {
               type === "Ho" && <View style={tailwind("items-center")}>
-              <DatePicker
-              color="primary"
-              placeholder="YYYY-MM-DD"
-              value={dateS}
-              clearable
-              minDate="1920-05-01"
-              maxDate={new Date()}
-              onDate={(dateS) => {
-              setDateS(dateS)
-              }}
-              onClear={() => setDateS('')}
-              width={250}
-              onChange={(value) => setDateS(value)}/>
+                <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de sortie?</Text>
+                <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate3}/>
+        
 
                 <div>
                 <div>  <input  onChange={handleTypeSChange} type="radio" value="Transfert inter-hopital" name="gender8" /> <Text style={tailwind('text-gray-700 py-2')}>Transfert inter-hopital</Text></div>
@@ -434,7 +342,7 @@ const Evolution = (props) => {
 
           </View>
 
-        
+        }
 
       </View>
 
@@ -443,8 +351,7 @@ const Evolution = (props) => {
 
         <FormButton title="Retour" onPress={() => { props.navigation.navigate("DiagnosticDetails") }} />
 
-
-</View>
+        </View>
       </View>
       </Container>
 </div>

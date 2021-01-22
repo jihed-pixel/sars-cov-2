@@ -25,6 +25,7 @@ let config = {
     };
 
 
+
 const CaracCliniques = (props) => {
 
     const [sym, setSym] = useState(true)
@@ -109,7 +110,7 @@ const CaracCliniques = (props) => {
 
 
     return (
-      <div>
+        <div>
 <div class="big">
 <Container style={{backgroundColor:"rgba(200,200,200,0.75)",backgroundsize: "cover"}} component="main" maxWidth="xs" >
             <View style={tailwind("items-center")}>
@@ -123,25 +124,23 @@ const CaracCliniques = (props) => {
               <input  onChange={handleSymChange} type="radio" value="Non" name="gender" /> <Text style={tailwind('text-gray-700 py-2')}>Non</Text>
             </div>
             </View>
-            
-                
+            {
+                sym === true &&
                 <View style={tailwind("items-center")}>
 
                     <FormButton title="Toux" onPress={() => setFievre(!fievre)}>
                         <Text >Fièvre</Text>
                     </FormButton>
-                    
-                    
-                         <View style={tailwind("items-center")}>
+                    {
+                        fievre === true && <View style={tailwind("items-center")}>
                             <Text style={tailwind("text-red-500")}>{test === false && "La temperature doit etre entre 36 et 43 °C"}</Text>
                             <FormInput placeholder="Si mesuré" type="decimal-pad" onChangeText={handleTemperatureChange} />
-                            </View>
                             <CaracCls dateD={dateD} dateF={dateF} setDateD={setDateD} setDateF={setDateF} onSubmit={() => { handleSubmitCarac("Fievre"); setFievre(!fievre) }} />
-                        
-                    
+                        </View>
+                    }
                     <FormButton  title="Toux" onPress={() => setToux(!toux)} />
-                    
-                         
+                    {
+                        toux === true && <View style={tailwind("items-center")}>
                         <View style={styles.row}>
                                 <div>
                         	  <Text style={tailwind('text-gray-700 py-2')}>Equilibré?</Text>
@@ -150,80 +149,106 @@ const CaracCliniques = (props) => {
                                 </div>
                               </View>
                             <CaracCls dateD={dateD} dateF={dateF} setDateD={setDateD} setDateF={setDateF} onSubmit={() => { handleSubmitCarac("Toux"); setToux(!toux) }} />
-                        
-                    
+                        </View>
+                    }
                     <FormButton  title="Cépahlées" onPress={() => setCeph(!cepah)}/>
-                    
-                         
+                    {
+                        cepah === true && <View style={tailwind("items-center")}>
                             <CaracCls dateD={dateD} dateF={dateF} setDateD={setDateD} setDateF={setDateF} onSubmit={() => { handleSubmitCarac("Cephalees"); setCeph(!cepah) }} />
-                        
-                    
+                        </View>
+                    }
                     <FormButton  title="Asthénie/fatigue" onPress={() => setAsth(!asth)}/>
-                    
+                    {
+                        asth === true && <View style={tailwind("items-center")}>
                             <CaracCls dateD={dateD} dateF={dateF} setDateD={setDateD} setDateF={setDateF} onSubmit={() => { handleSubmitCarac("AshthFat"); setAsth(!asth) }} />
-                       
+                        </View>
+                    }
                     <FormButton title="Myalgies/courabatures" onPress={() => setMya(!mya)}/>
-                    
+                    {
+                        mya === true && <View style={tailwind("items-center")}>
                             <CaracCls dateD={dateD} dateF={dateF} setDateD={setDateD} setDateF={setDateF} onSubmit={() => { handleSubmitCarac("MyalCourba"); setMya(!mya) }} />
-
+                        </View>
+                    }
                     <FormButton  title="Odynophagie" onPress={() => setOdy(!ody)}/>
-
+                    {
+                        ody === true && <View style={tailwind("items-center")}>
                             <CaracCls dateD={dateD} dateF={dateF} setDateD={setDateD} setDateF={setDateF} onSubmit={() => { handleSubmitCarac("Odynophagie"); setOdy(!ody) }} />
+                        </View>
+                    }
                     <FormButton title="Rhinorrhée/Congestion nasale" onPress={() => setRhi(!rhi)}/>
-                    
+                    {
+                        rhi === true && <View style={tailwind("items-center")}>
                             <CaracCls dateD={dateD} dateF={dateF} setDateD={setDateD} setDateF={setDateF} onSubmit={() => { handleSubmitCarac("RhinoCongNas"); setRhi(!rhi) }} />
-
+                        </View>
+                    }
                     <FormButton title="Anosmie" onPress={() => setAno(!ano)}/>
-                  
+                    {
+                        ano === true && <View style={tailwind("items-center")}>
                             <CaracCls dateD={dateD} dateF={dateF} setDateD={setDateD} setDateF={setDateF} onSubmit={() => { handleSubmitCarac("Anosmie"); setAno(!ano) }} />
-                       
+                        </View>
+                    }
                     <FormButton title="Agueusie" onPress={() => setAgu(!agu)}/>
-                   
+                    {
+                        agu === true && <View style={tailwind("items-center")}>
                             <CaracCls dateD={dateD} dateF={dateF} setDateD={setDateD} setDateF={setDateF} onSubmit={() => { handleSubmitCarac("Agueusie"); setAgu(!agu) }} />
-                       
+                        </View>
+                    }
                     <FormButton title="Diarrhée" onPress={() => setDia(!dia)}/>
-                     <View style={tailwind("items-center")}>
+                    {
+                        dia === true && <View style={tailwind("items-center")}>
                             <FormInput placeholder="Nb selles/jour" onChangeText={handleSelle} maxLength={Number("2")} type="number-pad" />
                             <CaracCls dateD={dateD} dateF={dateF} setDateD={setDateD} setDateF={setDateF} onSubmit={() => { handleSubmitCarac("Diarrhee"); setDia(!dia) }} />
                         </View>
-                    
+                    }
                     <FormButton title="Nausée/voumissement" onPress={() => setNau(!nau)}/>
-                     <View style={tailwind("items-center")}>
+                    {
+                        nau === true && <View style={tailwind("items-center")}>
                             <FormInput placeholder="Nb episodes/jour" onChangeText={handleNbEpisodes}  maxLength={Number("2")} type="number-pad"/>
                             <CaracCls dateD={dateD} dateF={dateF} setDateD={setDateD} setDateF={setDateF} onSubmit={() => { handleSubmitCarac("NauVoumi"); setNau(!nau) }} />
                         </View>
-                    
+                    }
 
                     <FormButton title="ERuption cutanée" onPress={() => setEru(!eru)}/>
-                    
+                    {
+                        eru === true && <View style={tailwind("items-center")}>
                             <CaracCls dateD={dateD} dateF={dateF} setDateD={setDateD} setDateF={setDateF} onSubmit={() => { handleSubmitCarac("ErruptionCu"); setEru(!eru) }} />
-                       
+                        </View>
+                    }
                     <FormButton title="Engelure" onPress={() => setEng(!eng)}/>
-                    
+                    {
+                        eng === true && <View style={tailwind("items-center")}>
                             <CaracCls dateD={dateD} dateF={dateF} setDateD={setDateD} setDateF={setDateF} onSubmit={() => { handleSubmitCarac("Engelure"); setEng(!eng) }} />
-                       
+                        </View>
+                    }
                     <FormButton title="Douleur thoracique" onPress={() => setDou(!dou)}/>
-                    
+                    {
+                        dou === true && <View style={tailwind("items-center")}>
                             <CaracCls dateD={dateD} dateF={dateF} setDateD={setDateD} setDateF={setDateF} onSubmit={() => { handleSubmitCarac("DouleurThora"); setDou(!dou) }} />
-                       
+                        </View>
+                    }
                     <FormButton title="Génie respiratoire<" onPress={() => setGen(!gen)}/>
-                    
+                    {
+                        gen === true && <View style={tailwind("items-center")}>
                             <CaracCls dateD={dateD} dateF={dateF} setDateD={setDateD} setDateF={setDateF} onSubmit={() => { handleSubmitCarac("GeneRespi"); setGen(!gen) }} />
-                        
+                        </View>
+                    }
                     <FormButton title="Essoufflement" onPress={() => setEss(!ess)}/>
-                    
+                    {
+                        ess === true && <View style={tailwind("items-center")}>
                             <CaracCls dateD={dateD} dateF={dateF} setDateD={setDateD} setDateF={setDateF} onSubmit={() => { handleSubmitCarac("Essouflement"); setEss(!ess) }} />
-                       
+                        </View>
+                    }
                     <FormButton title="Autres signes cliniques" onPress={() => setAut(!aut)}/>
-                     <View style={tailwind("items-center")}>
+                    {
+                        aut === true && <View style={tailwind("items-center")}>
                             <FormInput placeholder="Préciser" onChangeText={handleAutre} />
                             <CaracCls dateD={dateD} dateF={dateF} setDateD={setDateD} setDateF={setDateF} onSubmit={() => { handleSubmitCarac("Autre"); setAut(!aut) }} />
                         </View>
-                    
+                    }
 
                 </View>
 
-            
+            }
             <View style={tailwind("items-center pb-8")}>
                 <View style={styles.row}>
                     <FormButton title="Retour" onPress={() => { props.navigation.navigate("DiagnosticDetails") }} />
@@ -234,10 +259,9 @@ const CaracCliniques = (props) => {
             </View>
             </View>
             </Container>
-  </div>
-  <ParticlesBg type="cobweb" config={config} bg={true} />
-  </div>  
-
+</div>
+<ParticlesBg type="cobweb" config={config} bg={true} />
+</div>
 
     );
 };

@@ -9,6 +9,7 @@ import FormInput from '../../Form/FormInput';
 import Container from '@material-ui/core/Container';
 import ParticlesBg from "particles-bg";
 import '../home.css';
+import Steps from "../../Form/Steps";
 let config = {
       num: [4, 7],
       rps: 0.1,
@@ -89,6 +90,7 @@ const HabitudesDeVie1 = (props) => {
     return (
       <div>
       <div class="big">
+      <View style={styles.row}>
       <Container style={{backgroundColor:"rgba(200,200,200,0.75)",backgroundsize: "cover"}} component="main" maxWidth="xs" >
             <View style={tailwind(' items-center ')} >
 
@@ -153,6 +155,8 @@ const HabitudesDeVie1 = (props) => {
                 <FormButton title="Pass" onPress={() => { props.navigation.navigate("ConfirmationDiag1") }} />
             </View>
             </Container>
+            <Steps current={3} /> 
+</View>
 </div>
 <ParticlesBg type="cobweb" config={config} bg={true} />
 </div>

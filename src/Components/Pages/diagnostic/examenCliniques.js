@@ -25,6 +25,7 @@ let config = {
       random: 10
     };
 
+
 const ExamenCliniques = (props) => {
 
     var handleExamOroChange = (newValue, text) => {
@@ -180,7 +181,7 @@ const ExamenCliniques = (props) => {
 
 
     return (
-      <div>
+        <div>
 <div class="big">
 <Container style={{backgroundColor:"rgba(200,200,200,0.75)",backgroundsize: "cover"}} component="main" maxWidth="xs" >
             <View style={tailwind("items-center")}>
@@ -197,7 +198,7 @@ const ExamenCliniques = (props) => {
                 <FormInput placeholder="Poids kg" type="decimal-pad" maxLength={Number("3")} onChangeText={setPoids} />
                 <FormInput placeholder="Taille m" type="number-pad" onChangeText={setTaille}  maxLength={Number("3")}/>
             </View>
-            <View style={tailwind("items-center")}>
+            <View style={tailwind("px-8 py-2 ")}>
                 <FormButton title="Examen oro-pharyngé" onPress={() => setOro(!oro)}/>
                 {
                     oro === true &&
