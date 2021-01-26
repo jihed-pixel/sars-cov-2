@@ -283,7 +283,7 @@ const ExamenCliniques = (props) => {
                 <FormButton title="Retour" onPress={() => { props.navigation.navigate("CaracCliniques1") }} />
                 <FormButton title="Suivant" onPress={handleSubmit} />
                 </View>
-                <FormButton title="Pass" onPress={() => { props.navigation.navigate("ExamenRadioParaCli1") }} />
+                <FormButton title="Suivant" onPress={() => { props.navigation.navigate("ExamenRadioParaCli1") }} />
 
             </View>
         </View>

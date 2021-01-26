@@ -152,7 +152,7 @@ const HabitudesDeVie1 = (props) => {
                     <FormButton title="Annuler" onPress={() => { props.navigation.navigate("HabitudesDeVie1") }} />
                     <FormButton title="Suivant" onPress={handleSubmit} />
                 </View>
-                <FormButton title="Pass" onPress={() => { props.navigation.navigate("ConfirmationDiag1") }} />
+                <FormButton title="Suivant" onPress={() => { props.navigation.navigate("ConfirmationDiag1") }} />
             </View>
             </Container>
             <Steps current={3} /> 

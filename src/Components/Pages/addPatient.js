@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import FormInput from "../Form/FormInput";
+import FormInput3 from "../Form/FormInput3";
 import tailwind from 'tailwind-rn';
 import Steps from "../Form/Steps";
 import FormButton from '../Form/FormButton';
@@ -147,6 +148,11 @@ const AddPatient = (props) => {
     localStorage.setItem("addPatientMessage", JSON.stringify(null))
     props.navigation.navigate("SearchPatient1")
   }
+  /*<FormInput3 
+        mask="999999"
+        placeholder="Cin"
+        onChange={handleCinChange}
+        />*/
   return (
     <div>
 <div class="big">
@@ -159,11 +165,17 @@ const AddPatient = (props) => {
       <Text style={tailwind('text-gray-700 font-bold text-xl text-center')}>Informations générales</Text>
       <Text style={tailwind('text-red-500 font-bold text-center py-2')} > {(localStorage.getItem("addPatientMessage") !== JSON.stringify(null)) && (props.message)}</Text>
       <View style={tailwind(' items-center ')}>
-        <FormInput
-          placeholder="CIN"
+      <FormInput
+          placeholder="Cin"
           type="number-pad"
-          maxLength={Number("8")}
           onChangeText={handleCinChange}
+          maxLength={Number("8")}
+        />
+        <FormInput
+          placeholder="Matricule"
+          type="number-pad"
+          onChangeText={handleMatriculeChange}
+          maxLength={Number("10")}
         />
         <FormInput
           placeholder="Matricule"

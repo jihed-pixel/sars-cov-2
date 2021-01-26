@@ -256,7 +256,7 @@ const CaracCliniques = (props) => {
                     <FormButton title="Retour" onPress={() => { props.navigation.navigate("Admission1") }} />
                     {sym === false && <FormButton title="Enregistrer" onPress={() => { handleSubmitCarac(""); props.navigation.navigate("ExamenCliniques1") }} />}
                 </View>
-                <FormButton title="Pass" onPress={() => { props.navigation.navigate("ExamenCliniques1") }} />
+                <FormButton title="Suivant" onPress={() => { props.navigation.navigate("ExamenCliniques1") }} />
 
             </View>
             </View>

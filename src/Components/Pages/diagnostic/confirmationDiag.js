@@ -98,7 +98,7 @@ const ConfirmationDiag = (props) => {
       </div>
       </View>
       {test === "Pcr" && <View style={tailwind("items-center py-6")}>
-      <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de prise ?</Text>
+      <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date de prise ?</Text>
       <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate}/>
         <View style={tailwind(' items-center ')} >
         <div>
@@ -119,7 +119,7 @@ const ConfirmationDiag = (props) => {
         </View>
       </View> }
       {test === "RapideAc" && <View style={tailwind("items-center py-6")}>
-      <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de prise ?</Text>
+      <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date de prise ?</Text>
       <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate1}/>
       
         <View style={tailwind(' items-center ')} >
@@ -133,7 +133,7 @@ const ConfirmationDiag = (props) => {
       </View>
       }
       {test === "RapideAg" && <View style={tailwind("items-center py-6")}>
-      <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de prise ?</Text>
+      <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date de prise ?</Text>
       <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate2}/>
       
         <View style={tailwind(' items-center ')} >
@@ -147,7 +147,7 @@ const ConfirmationDiag = (props) => {
       </View>
       }
       {test === "Serologie" && <View style={tailwind("items-center py-6")}>
-      <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de prise ?</Text>
+      <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date de prise ?</Text>
       <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate3}/>
       
         <View style={tailwind(' items-center ')} >

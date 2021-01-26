@@ -448,7 +448,7 @@ const Evolution = (props) => {
 
       <View style={tailwind("items-center py-8")}>
         <FormButton title="Retour" onPress={() => { props.navigation.navigate("Traitement1") }} />
-        <FormButton title="Pass" onPress={() => { props.navigation.navigate("EvaluationFinale1") }} />
+        <FormButton title="Suivant" onPress={() => { props.navigation.navigate("EvaluationFinale1") }} />
       </View>
       </View>
       </Container>

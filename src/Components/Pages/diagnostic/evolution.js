@@ -199,11 +199,11 @@ const Evolution = (props) => {
             <Text style={tailwind("text-red-500 font-bold pt-4 text-center")}>{validation}</Text>
             {(type === "Signes de lutte" || type === "Froideur" || type === "Marbrures" || type === "Angoisse/Agitation" || type === "Température" || type === "SaO2" || type === "Besoin en O2" || type === "TA" || type === "FR" || type === "FC" || type === "Score de glasgow") &&
               <View style={tailwind("items-center")}>
-                <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date d’amélioration</Text>
+                <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date d’amélioration</Text>
               <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSChange1}/>
-              <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date d’aggravation</Text>
+              <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date d’aggravation</Text>
               <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSChange2}/>
-              <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de réapparition</Text>
+              <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date de réapparition</Text>
               <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSChange3}/></View>
             }
             <FormButton title="Enregistrer" onPress={handleSubmit} />
@@ -219,9 +219,9 @@ const Evolution = (props) => {
             <div>  <input  onChange={handleTypeChange} type="radio" value="Sepsis/Choc septique" name="gender2" /> <Text style={tailwind('text-gray-700 py-2')}>Sepsis/Choc septique</Text></div>
             </div>
             <View style={tailwind("items-center")}>
-            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date début</Text>
+            <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date début</Text>
             <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate1}/>
-            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date fin</Text>
+            <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date fin</Text>
             <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate2}/>
               <FormInput placeholder={"SAPS 2"} onChangeText={setSaps2} type="decimal-pad" maxLength={Number("8")} />
               <FormInput placeholder={"APACHE 2"} onChangeText={setApache2} type="decimal-pad" maxLength={Number("8")} />
@@ -254,9 +254,9 @@ const Evolution = (props) => {
 
 
             <View style={tailwind("items-center")}>
-            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date début</Text>
+            <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date début</Text>
             <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate1}/>
-            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date fin</Text>
+            <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date fin</Text>
             <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate2}/>
               <FormButton title="Enregistrer" onPress={handleSubmit} />
             </View>
@@ -277,7 +277,7 @@ const Evolution = (props) => {
             {
               type === "IHH" && <View style={tailwind("")}>
                 <View style={tailwind("items-center")}>
-                <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de sortie?</Text>
+                <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date de sortie?</Text>
                 <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate3}/>
                 </View>
                 <View style={styles.row}>
@@ -291,7 +291,7 @@ const Evolution = (props) => {
                 </View>
                 {
                   hospi === true && <View style={tailwind("items-center")}>
-                    <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date d'hospitalisation?</Text>
+                    <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date d'hospitalisation?</Text>
                     <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate4}/>
                   
                   
@@ -319,7 +319,7 @@ const Evolution = (props) => {
 
             {
               type === "Ho" && <View style={tailwind("items-center")}>
-                <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de sortie?</Text>
+                <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date de sortie?</Text>
                 <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate3}/>
         
 

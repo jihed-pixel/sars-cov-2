@@ -141,7 +141,7 @@ const Admission = (props) => {
           {lieuCB === "autre" && <FormInput placeholder="..." onChangeText={handleLieuChange} />}
           {lieuCB === "centre" && <FormInput placeholder="Préciser le quel" onChangeText={handleLieuChange} />}
             <View style={styles.row}>
-            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date d'entée?</Text>
+            <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date d'entée?</Text>
             <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate}/>
           </View>
         </View>
@@ -150,7 +150,7 @@ const Admission = (props) => {
         type === "hop" && <View style={tailwind("items-center")}>
           <FormInput placeholder="Hopital" onChangeText={handleHopitalChange} />
           <FormInput placeholder="Service" onChangeText={handleServiceChange} />
-          <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date d'entée?</Text>
+          <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date d'entée?</Text>
           <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate}/>
           <View style={styles.row}>
         <div  >
@@ -173,7 +173,7 @@ const Admission = (props) => {
           <FormButton title="Retour" onPress={() => { props.navigation.navigate("ConfirmationDiag1") }} />
           <FormButton title="suivant" onPress={handleSubmit} />
         </View>
-        <FormButton title="Pass" onPress={() => { props.navigation.navigate("CaracCliniques1") }} />
+        <FormButton title="Suivant" onPress={() => { props.navigation.navigate("CaracCliniques1") }} />
       </View>
       </View>
       </Container>

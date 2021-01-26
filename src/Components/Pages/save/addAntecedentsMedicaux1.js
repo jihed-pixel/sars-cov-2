@@ -60,7 +60,7 @@ const AddAntecendentsMedicaux1 = (props) => {
           <FormButton title="Retour1" onPress={() => { props.navigation.navigate("Exposition1") }} />
           <FormButton title="Suivant" onPress={() => { props.navigation.navigate(nextPath) }} />
         </View>
-        <FormButton title="Pass" onPress={() => { props.navigation.navigate("HabitudesDeVie1") }} />
+        <FormButton title="Suivant" onPress={() => { props.navigation.navigate("HabitudesDeVie1") }} />
       </View>
       </Container>
       <Steps current={2} /> 

@@ -241,9 +241,9 @@ const Exposition = (props) => {
           <input  onChange={habiteHandleChange} type="radio" value="row" name="gender" /> <Text style={tailwind('text-gray-700 py-2')}>row</Text>
         </div>
             <Text>Séjour ou transit dans zone risque ?</Text>
-            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Du ?</Text>
+            <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Du ?</Text>
             <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate}/>
-            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Au ?</Text>
+            <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Au ?</Text>
             <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate1}/>
             
 
@@ -251,7 +251,7 @@ const Exposition = (props) => {
           }
           <FormButton title="Arivée sur le territoire tunisien" onPress={handleAriveeChange}/>
           {arivee == true && <View style={tailwind("items-center")}>
-          <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date d'arrivée en Tunisie?</Text>
+          <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date d'arrivée en Tunisie?</Text>
           <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate2}/>
           
             <FormInput placeholder="Lieu d'entrée" onChangeText={handleLieuEnt} />
@@ -260,11 +260,11 @@ const Exposition = (props) => {
           <FormButton title="Parcours en Tunisie" onPress={handleParousChange}/>
           {(parcours == true) && <View style={tailwind("items-center")}>
             <FormInput placeholder="Villes visités en Tunisie" onChangeText={handleVillesPar} />
-            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date d'arrivée ville 1</Text>
+            <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date d'arrivée ville 1</Text>
             <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate3}/>
             
             <FormInput placeholder="Moyens de transport" onChangeText={handleMoyenTranV1} />
-            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date d'arrivée ville 2</Text>
+            <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date d'arrivée ville 2</Text>
             <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate4}/>
             
             <FormInput placeholder="Moyens de transport" onChangeText={handleMoyenTranV2} />
@@ -284,9 +284,9 @@ const Exposition = (props) => {
             </View>
             )}
           {(contactC === "Oui" && etroit == true) && (<View style={tailwind("items-center")}>
-          <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Du ?</Text>
+          <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Du ?</Text>
           <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate5}/>
-          <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Au ?</Text>
+          <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Au ?</Text>
           <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate6}/>
 
             <FormInput placeholder="Identifiant en Tunisie" type="number-pad" onChangeText={handleIdTun} />
@@ -316,9 +316,9 @@ const Exposition = (props) => {
             <Text style={tailwind('text-gray-700 py-2')}>  Mise en quarantine ?</Text>
           </View>}
           {(quarantine == true && miseQuarantine === "Oui") && <View style={tailwind('items-center')}>
-          <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}></Text>
+          <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}></Text>
           <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate7}/>
-          <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}></Text>
+          <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}></Text>
           <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate8}/>
           
           <div>

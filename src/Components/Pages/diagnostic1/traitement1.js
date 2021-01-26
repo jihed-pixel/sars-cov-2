@@ -222,9 +222,9 @@ const Traitement = (props) => {
         {
           (oper === "A") && <View style={tailwind("items-center ")}>
             <FormInput placeholder={"Dosage"} onChangeText={setDosage}  />
-            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de debut</Text>
+            <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date de debut</Text>
             <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate}/>
-            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de fin</Text>
+            <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date de fin</Text>
             <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate1}/>
             
           </View>
@@ -235,9 +235,9 @@ const Traitement = (props) => {
         {
           oper === "M" && typeof (props.traitmentList) !== "string" && props.traitmentList !== null && <View style={tailwind("items-center")}>
             <FormInput placeholder={"Doage/Debit:" + props.traitmentList["dosage"]} editable="false" />
-            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de debut</Text>
+            <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date de debut</Text>
             <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate}/>
-            <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date fin</Text>
+            <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date fin</Text>
             <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate1}/>
             
           </View>
@@ -248,7 +248,7 @@ const Traitement = (props) => {
           <FormButton title="Retour" onPress={() => props.navigation.navigate("examBio1")} />
           <FormButton title="Enregistrer" onPress={handleSUbmit} />
         </View>
-        <FormButton title="Pass" onPress={() => props.navigation.navigate("Evolution1")} />
+        <FormButton title="Suivant" onPress={() => props.navigation.navigate("Evolution1")} />
 
       </View>
     </View>

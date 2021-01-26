@@ -48,12 +48,12 @@ const Home = (props) => {
       <View style={tailwind(' items-center mt-10')} >
       <View style={tailwind(' items-center ')} >
         <Text style={tailwind('text-gray-700 font-bold py-2 text-9xl')}>Bienvenue a </Text>
-        <Text style={tailwind('text-gray-700 font-bold py-2 text-9xl')}>Plate-forme sars cov 2</Text>
+        <Text style={tailwind('text-gray-700 font-bold py-2 text-9xl')}>Plate-forme SARS-COV2</Text>
         <Text style={tailwind('text-gray-700 font-bold py-2 text-9xl')}>et autre maladie infectieuse</Text>
         </View>
         <View style={tailwind('py-4')}>
-          <FormButton title="Ajouter un patient" onPress={() => props.navigation.navigate("AddPatient")} />
-          <FormButton title=" Rechercher un patient " onPress={() => props.navigation.navigate("SearchPatient")} />
+          <FormButton title="Créer un dossier patient" onPress={() => props.navigation.navigate("AddPatient")} />
+          <FormButton title=" Rechercher un dossier patient " onPress={() => props.navigation.navigate("SearchPatient")} />
         </View>
         <FormButton title="Deconnexion" onPress={logout} />
 </View>

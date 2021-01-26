@@ -182,7 +182,7 @@ const ExamenRadioParaCli = (props) => {
           <FormButton title="Suivant" onPress={handleSubmit} />
 
         </View>
-        <FormButton title="Pass" onPress={() => props.navigation.navigate("ExamBio1")} />
+        <FormButton title="Suivant" onPress={() => props.navigation.navigate("ExamBio1")} />
       </View>
     </View>
     </Container>

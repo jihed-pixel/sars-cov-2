@@ -69,7 +69,7 @@ const EvaluationFinale = (props) => {
       <Text style={tailwind('text-gray-700 font-bold py-2 text-xl text-center')}>Evaluation finale</Text>
       <Text style={tailwind('text-gray-700 font-bold py-2  text-center')}>Patient:{props.patientList["generalInformation"]["nom"] + " " + props.patientList["generalInformation"]["prenom"]}</Text>
       <View style={tailwind("items-center py-8")}>
-      <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de sortie?</Text>
+      <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date de sortie?</Text>
       <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate}/>
       </View>
       <View style={tailwind("items-center")}>
@@ -82,7 +82,7 @@ const EvaluationFinale = (props) => {
         </View>
         {
           deces === false &&<View style={tailwind("items-center py-8")}>
-          <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de disparition des signes</Text>
+          <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date de disparition des signes</Text>
           <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate}/>
           </View>
         }
@@ -100,7 +100,7 @@ const EvaluationFinale = (props) => {
           <FormButton title="Retour" onPress={() => { props.navigation.navigate("evolution1") }} />
           <FormButton title="Suivant" onPress={handleSubmit} />
         </View>
-        <FormButton title="Pass" onPress={() => { props.navigation.navigate("SearchPatient") }} />
+        <FormButton title="Suivant" onPress={() => { props.navigation.navigate("SearchPatient") }} />
       </View>
       </View>
       </Container>

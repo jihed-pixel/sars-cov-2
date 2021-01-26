@@ -182,7 +182,7 @@ const ExamBio = (props) => {
       }
       {
         type === "BilanRenal" && <View style={tailwind("items-center py-12")}>
-          <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de prise de l'examen</Text>
+          <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date de prise de l'examen</Text>
           <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate}/>
           <FormInput placeholder="Creat" onChangeText={setCreat} type="decimal-pad" />
           <FormInput placeholder="Clairance de la creat" onChangeText={setClairCreat} type="decimal-pad" />
@@ -192,7 +192,7 @@ const ExamBio = (props) => {
       }
       {
         type === "GDSA" && <View style={tailwind("items-center py-12")}>
-          <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de prise de l'examen</Text>
+          <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date de prise de l'examen</Text>
           <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate1}/>
         
           <FormInput placeholder="pH" onChangeText={setPh} type="decimal-pad" />
@@ -206,7 +206,7 @@ const ExamBio = (props) => {
       }
       {
         type === "BilanHepa" && <View style={tailwind("items-center py-12")}>
-          <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de prise de l'examen</Text>
+          <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date de prise de l'examen</Text>
           <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate2}/>
         
           <FormInput placeholder="Bilirubine (T)" onChangeText={setBiliru} type="decimal-pad" />
@@ -232,7 +232,7 @@ const ExamBio = (props) => {
       }
       {
         type === "Ionogra" && <View style={tailwind("items-center py-12")}>
-          <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de prise de l'examen</Text>
+          <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date de prise de l'examen</Text>
           <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate3}/>
         
           <FormInput placeholder="Na+" onChangeText={setNak} type="decimal-pad" />
@@ -245,7 +245,7 @@ const ExamBio = (props) => {
       }
       {
         type === "Autre" && <View style={tailwind("items-center py-12")}>
-          <Text style={tailwind('text-gray-700 font-bold py-2 text-xl')}>Date de prise de l'examen</Text>
+          <Text style={tailwind("pt-8 text-center pb-2 text-gray-700")}>Date de prise de l'examen</Text>
           <input type="date" data-date="" data-date-format="DD MMMM YYYY" onChange={handleTypeSdate4}/>
         
         </View>
